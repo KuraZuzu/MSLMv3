@@ -19,6 +19,7 @@ private:
     uint8_t _y_size = 0;
     Point _point;
 
+
 public:
 
     Map3(uint8_t x_size, uint8_t y_size);

@@ -9,6 +9,7 @@
 
 #include "mbed.h"
 #include "vector.h"
+#include "Point.h"
 
 class StepMotor{
 
@@ -56,6 +57,7 @@ private:
     bool r_flag{false};
 
 
+
     int32_t old_l_pulse;
     int32_t old_r_pulse;
     int32_t delta_l_pulse;
@@ -74,6 +76,7 @@ private:
     int v_count;
 
 public:
+    Position _position;
 
     MotorManager(StepMotor left, StepMotor right, PinName refout); //呼び出し
 

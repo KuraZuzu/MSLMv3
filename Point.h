@@ -20,6 +20,7 @@ public:
 
 struct Position : public Point{
 
+
 public:
     float_t rad;
 

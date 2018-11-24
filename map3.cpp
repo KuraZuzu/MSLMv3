@@ -5,12 +5,13 @@
 #include "map3.h"
 
 Map3::Map3(uint8_t x_size, uint8_t y_size) {
+
     _x_size = x_size;
     _y_size = y_size;
     _block = new Block* [x_size];
 
-    for (int i = 0; i < y_size; ++i) {
-        _block[i] = new Block;
+    for (int i = 0; i < x_size; ++i) {
+        _block[i] = new Block[y_size];    // for(i < x_size)  で  _block[i] = new Block[y_size] では？
     }
 
     map_init();

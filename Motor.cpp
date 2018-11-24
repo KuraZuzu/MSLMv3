@@ -172,17 +172,21 @@ void MotorManager::loop() {
 
 
         //ここの条件分岐がおかしいよー
-        if (pi * 1/4 >= moved_rad && moved_rad < pi * 3/4)
-            current_machine_direction = 0;  //北
+//        if (pi * 1/4 >= moved_rad && moved_rad < pi * 3/4)
+//            current_machine_direction = 0;  //北
+//
+//        else if (pi * 3/4 >= moved_rad && moved_rad < pi * 5/4)
+//            current_machine_direction = 1;  //東
+//
+//        else if (pi * 5/4 >= moved_rad && moved_rad < pi * 7/4)
+//            current_machine_direction = 2;  //南
+//
+//        else
+//            current_machine_direction = 3;  //西
 
-        else if (pi * 3/4 >= moved_rad && moved_rad < pi * 5/4)
-            current_machine_direction = 1;  //東
-
-        else if (pi * 5/4 >= moved_rad && moved_rad < pi * 7/4)
-            current_machine_direction = 2;  //南
-
-        else
-            current_machine_direction = 3;  //西
+        _position.x = moved_x_distance;
+        _position.y = moved_y_distance;
+        _position.rad = moved_rad;
 
 
         odometry_watch_count++;

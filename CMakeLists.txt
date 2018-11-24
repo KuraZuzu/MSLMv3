@@ -14,6 +14,8 @@ set(MSLM_SOURCE
         map3.cpp
         Point.cpp
         Point.h
+        PositionEstimator.h
+        PositionEstimator.cpp
         )
 
 add_library(MSLM ${MSLM_SOURCE})
