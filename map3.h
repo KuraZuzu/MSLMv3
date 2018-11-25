@@ -16,15 +16,16 @@ public:
 
     ~Map3();
 
-    void set_bock(Block _wall_info, Point point){}
+    void set_block(Block _wall_info, Point point){}
 
     void set_wall(Block _wall_info){
-        int test;
         _block[(int)_point.x][(int)_point.y] = _wall_info;
     }
 
     void set_block(Position position){}
-    Block get_block(Point point){}
+    Block get_block(Point point){
+        return _block[(int)point.x][(int)point.y];
+    }
 
 
 private:
