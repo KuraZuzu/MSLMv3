@@ -1,8 +1,6 @@
 #ifndef DEF_TYPE_H
 #define DEF_TYPE_H
 
-#include "mbed.h"
-
 #define pi 3.14159265
 
 

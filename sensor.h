@@ -1,6 +1,7 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 #include "deftype.h"
+#include "mbed.h"
 
 class DistanceSensor{
     private:

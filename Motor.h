@@ -7,9 +7,10 @@
 #ifndef NEWZUZUMOUSE_MOTOR_H
 #define NEWZUZUMOUSE_MOTOR_H
 
-#include "mbed.h"
+#include "deftype.h"
 #include "vector.h"
 #include "Point.h"
+#include "mbed.h"
 
 class StepMotor{
 

@@ -6,6 +6,7 @@
 #define NEWZUZUMOUSE_BLOCK_H
 
 
+#include <cstdint>
 #include "deftype.h"
 
 class Block {
@@ -13,7 +14,6 @@ class Block {
 private:
                   //         NESW <- mask (North, East, South, West)//
     uint8_t _b;  // 0b 0000 0000                                   //
-
 public:
 
     void set_north_wall();
@@ -28,6 +28,8 @@ public:
     bool is_opened_west_wall();
 
     uint8_t get_block_info(){ return _b;}
+    bool is_searched(){};
+    void set_searched(){};
 
 };
 

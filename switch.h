@@ -1,6 +1,7 @@
 #ifndef SWITCH_H
 #define SWITCH_H
 #include "deftype.h"
+#include "mbed.h"
 class Switch{
 private:
     DigitalIn _SWInput;	//SWが付いているmbedのピン番号

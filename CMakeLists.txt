@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.10)
 project(MSLMv3)
 
 set(MSLM_SOURCE
@@ -18,6 +19,14 @@ set(MSLM_SOURCE
         PositionEstimator.cpp
         )
 
+set(MSLM_SIM_SOURCE
+        block.cpp
+        map3.cpp
+        Simulator.cpp
+        sim_main.cpp)
+
 add_library(MSLM ${MSLM_SOURCE})
 
 target_link_libraries(MSLM ${MBED_LIBS})
+
+add_executable(SIM ${MSLM_SIM_SOURCE})

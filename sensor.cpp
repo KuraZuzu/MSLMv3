@@ -1,5 +1,4 @@
 #include "sensor.h"
-#include "mbed.h"
 
 DistanceSensor::DistanceSensor( PinName analog_value ):_analog_value(analog_value){
 	//_analog_value = 0;

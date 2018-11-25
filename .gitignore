@@ -178,3 +178,4 @@ $RECYCLE.BIN/
 .nfs*
 
 
+cmake_build_debug/
