@@ -21,6 +21,12 @@ public:
 
     PositionEstimator(Position& odometry);
     Position get_position(){ return _odometry;}
+    MapPosition get_map_position(){
+        MapPosition v;
+        v.x = _odometry.x;
+        v.y = _odometry.y;
+        return v;
+    }
 
 
 

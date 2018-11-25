@@ -6,6 +6,7 @@
 #define NEWZUZUMOUSE_POINT_H
 
 #include <cmath>
+#include <inttypes.h>
 
 template <typename T>
 struct Point{
@@ -24,6 +25,13 @@ struct Position : public Point<double_t>{
 
 public:
     double_t rad;
+
+};
+
+struct MapPosition : public Point<uint8_t>{
+
+public:
+    uint8_t direction;
 
 };
 
