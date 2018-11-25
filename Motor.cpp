@@ -134,7 +134,6 @@ void MotorManager::loop() {
 
     if (v_count == 400) {  // 25us * 400 = 10000us のサンプリングレートとなる (0.01s となる)
 
-        //10000usごとに、どれくらいのパルスが入ったか
         delta_l_pulse = l_pulse - old_l_pulse;
         delta_r_pulse = r_pulse - old_r_pulse;
 
@@ -151,53 +150,18 @@ void MotorManager::loop() {
 
         //タイヤのスペックは、直径28.0mm、モーターが1セットのパルス(2pulse)で0.9度回転
 
-        delta_l_distance = (delta_l_pulse) * CIRCLE_R * pi / 400.0 / 2.0;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
-//        delta_l_distance = delta_l_pulse * ((pi*28.0)/400.0);
-        delta_r_distance = (delta_r_pulse) * CIRCLE_R * pi / 400.0 / 2.0;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.(各車輪の各毒度にしたかったら * 100)
-//        delta_r_distance = delta_r_pulse * ((pi*28.0)/400.0);
+        delta_l_distance = (delta_l_pulse) * 28 * pi / 400 / 2;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
+        delta_r_distance = (delta_r_pulse) * 28 * pi / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
 
+        v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
 
-
-        // l の角速度 = deelta_l_pulse * 28 * pi / 400  * 100
-        // r の角速度 = deelta_r_pulse * 28 * pi / 400  * 100
-
-        double_t omega_l_v = delta_l_distance / ((CIRCLE_R / 2.0) * 0.01);
-        double_t omega_r_v = delta_r_distance / ((CIRCLE_R / 2.0) * 0.01);
-
-        // タイヤ半径28/2 = 14.0
-        v = (14.0/2.0)*(omega_l_v+omega_r_v);
-
-        double_t omega = (CIRCLE_R / WIDTH) * (omega_r_v - omega_l_v);
-
-
-        moved_rad +=  omega * 0.01;
-
-
-//        const auto k = (int32_t)(moved_rad / pi);
-//
-//        if(k > 0){
-//            moved_rad = 2 * pi - moved_rad;
-//        }(k < 0){
-//            moved_rad = 2 * pi + moved_rad;
-//        }
-//
-
-
-
+        moved_rad += atan2(delta_r_distance - delta_l_distance, 77.7); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
-        moved_x_distance += v * sin(moved_rad) / 100.0;  //x軸
-        moved_y_distance += v * cos(moved_rad) / 100.0;  //y軸
+        moved_x_distance += v * cos(3.14159265 / 2 + moved_rad) / 100;  //x軸
+        moved_y_distance += v * sin(3.14159265 / 2 + moved_rad) / 100;  //y軸
 
-
-//            printf("%d \r\n", l_v_log.size()/);
-//            l_v_log.push_back(delta_l_distance);
-//        }
-
-//        odometry_watch_count = (odometry_watch_count<99)?odometry_watch_count+1:odometry_watch_count;
-
-//        if(odometry_watch_count < 50) {
 
         _position.x = moved_x_distance;
         _position.y = moved_y_distance;

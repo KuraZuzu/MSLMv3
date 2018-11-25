@@ -23,8 +23,8 @@ public:
     Position get_position(){ return _odometry;}
     MapPosition get_map_position(){
         MapPosition v;
-        v.x = _odometry.x;
-        v.y = _odometry.y;
+        v.x = _odometry.x / 180.0;
+        v.y = _odometry.y / 180.0;
         return v;
     }
 
