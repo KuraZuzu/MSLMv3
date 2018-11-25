@@ -16,8 +16,7 @@ public:
     ~Map3();
 
     void set_block(Block block, Point<uint8_t> point){
-        _block[_point.x][_point.y] = block;
-        if((block.get_block_info() == NORTH_MASK) && (point.y < _y_size-1)) _block
+
 
     }
 

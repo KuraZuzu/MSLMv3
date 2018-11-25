@@ -156,13 +156,16 @@ void MotorManager::loop() {
         delta_r_distance = (delta_r_pulse) * CIRCLE_R * pi / 400.0 / 2.0;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.(各車輪の各毒度にしたかったら * 100)
 //        delta_r_distance = delta_r_pulse * ((pi*28.0)/400.0);
 
-        v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
+
 
         // l の角速度 = deelta_l_pulse * 28 * pi / 400  * 100
         // r の角速度 = deelta_r_pulse * 28 * pi / 400  * 100
 
         double_t omega_l_v = delta_l_distance / ((CIRCLE_R / 2.0) * 0.01);
         double_t omega_r_v = delta_r_distance / ((CIRCLE_R / 2.0) * 0.01);
+
+        // タイヤ半径28/2 = 14.0
+        v = (14.0/2.0)*(omega_l_v+omega_r_v);
 
         double_t omega = (CIRCLE_R / WIDTH) * (omega_r_v - omega_l_v);
 
@@ -184,8 +187,8 @@ void MotorManager::loop() {
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
-        moved_x_distance += v * cos(pi / 2 + moved_rad) / 100;  //x軸
-        moved_y_distance += v * sin(pi / 2 + moved_rad) / 100;  //y軸
+        moved_x_distance += v * sin(moved_rad) / 100.0;  //x軸
+        moved_y_distance += v * cos(moved_rad) / 100.0;  //y軸
 
 
 //            printf("%d \r\n", l_v_log.size()/);
