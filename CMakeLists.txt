@@ -16,7 +16,7 @@ set(MSLM_SOURCE
         Point.cpp
         Point.h
         PositionEstimator.h
-        PositionEstimator.cpp algorithm.h)
+        PositionEstimator.cpp algorithm.h map4.cpp map4.h)
 
 set(MSLM_SIM_SOURCE
         block.cpp

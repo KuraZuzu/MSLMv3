@@ -8,7 +8,6 @@
 #include "Map3.h"
 
 void saitan(Map3 map){
-
 }
 
 #endif //MSLMV3_ALGORITHM_H
