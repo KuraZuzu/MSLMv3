@@ -182,3 +182,4 @@ $RECYCLE.BIN/
 cmake_build_debug/
 /map_mbed.h
 /map_mbed.cpp
+/sim_main.cpp
