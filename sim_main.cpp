@@ -3,41 +3,30 @@
 //
 #include <iostream>
 #include "map3.h"
+#include "map_mbed.h"
 
 using namespace std;
 
 int main(){
     int x = 16, y = 16;
-    Map3 map(16,16);
+    Map_Mbed map(16,16);
     Point <uint8_t>p;
     Block b;
-    uint8_t t = 0;
+
+    for (int i = 0; i < x; ++i) {
+        for (int j = 0; j < y; ++j) {
+            p.x = i;
+            p.y = j;
+            map.set_block(b, p);
+        }
+    }
     b.set_north_wall();
     b.set_east_wall();
     b.set_west_wall();
     b.set_south_wall();
-    for(int k=0; k<2; k++) {
-        for (int i = 0; i < x; ++i) {
-            for (int j = 0; j < y; ++j) {
-                p.x = i;
-                p.y = j;
-                map.set_block(b, p);
-            }
-        }
-        for (int i = 0; i < x; ++i) {
-            for (int j = 0; j < y; ++j) {
-                p.x = i;
-                p.y = j;
-                b = map.get_block(p);
-                t = b.get_block_info();
-                cout << (int) t;
-            }
-            cout << endl;
-        }
-        b.reset_wall();
-    }
-
-
-
+    p.x = 13;
+    p.y = 4;
+    map.set_block(b, p);
+    map.write_map();
     return 0;
 }

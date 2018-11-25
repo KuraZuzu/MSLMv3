@@ -15,14 +15,9 @@ public:
 
     ~Map3();
 
-    void set_block(Block block, Point<uint8_t> point){
+    void set_block(Block block, Point<uint8_t> point);
 
-
-    }
-
-    Block get_block(Point<uint8_t> point){
-        return _block[point.x][point.y];
-    }
+    Block get_block(Point<uint8_t> point);
 
 protected:
     Block **_block;
