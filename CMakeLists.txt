@@ -17,13 +17,14 @@ set(MSLM_SOURCE
         Point.h
         PositionEstimator.h
         PositionEstimator.cpp
-        )
+        map_mbed.cpp map_mbed.h)
 
 set(MSLM_SIM_SOURCE
         block.cpp
         map3.cpp
         Simulator.cpp
-        sim_main.cpp)
+        sim_main.cpp
+        map_mbed.cpp)
 
 add_library(MSLM ${MSLM_SOURCE})
 

@@ -8,7 +8,6 @@
 #include "block.h"
 #include "deftype.h"
 #include "Point.h"
-#include<fstream>
 
 class Map3 {
 public:
@@ -18,7 +17,8 @@ public:
 
     void set_block(Block _wall_info, Point point){}
 
-    void set_wall(Block _wall_info){
+    void set_wall(Block _wall_info, Point point){
+        _point = point;
         _block[(int)_point.x][(int)_point.y] = _wall_info;
     }
 
@@ -28,7 +28,7 @@ public:
     }
 
 
-private:
+protected:
     Block **_block;
     uint8_t _x_size = 0;
     uint8_t _y_size = 0;
