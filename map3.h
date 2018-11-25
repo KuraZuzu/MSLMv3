@@ -18,7 +18,7 @@ public:
     void set_block(Block block, Point<uint8_t> point);
 
     Block get_block(Point<uint8_t> point);
-    
+
 protected:
     Block **_block;
     uint8_t _x_size = 0;

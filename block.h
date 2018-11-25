@@ -13,7 +13,9 @@ class Block {
 
 private:
                   //         NESW <- mask (North, East, South, West)//
-    uint8_t _b = 0b00000000;                                   //
+    uint8_t _b = 0b00000000;
+    int walk_cnt = 255;
+
 public:
 
     void set_north_wall();
@@ -27,11 +29,9 @@ public:
     bool is_opened_south_wall();
     bool is_opened_west_wall();
 
-    uint8_t get_block_info(){ return _b;}
-//////////////とりあえずコンパイル通す為に強引に返り値設定/////
-    bool is_searched(){return 1;};
-    void set_searched(){};
-
+    uint8_t get_block_info();
+    void set_searched();
+    bool is_searched();
 };
 
 

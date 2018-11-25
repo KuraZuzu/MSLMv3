@@ -17,6 +17,7 @@
 #define SOUTH           0x02
 #define WEST			0x01
 
+#define  SEARCH_MASK 0b00010000
 #define NORTH_MASK 0b00001000
 #define EAST_MASK 0b00000100
 #define SOUTH_MASK 0b00000010

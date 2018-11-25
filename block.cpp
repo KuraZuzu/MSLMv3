@@ -45,3 +45,13 @@ bool Block::is_opened_west_wall() {
 void Block::reset_wall() {
     _b = 0b00000000;
 }
+
+uint8_t Block::get_block_info() { return _b;}
+
+void Block::set_searched() {
+    _b = _b|SEARCH_MASK;
+}
+
+bool Block::is_searched() {
+    return (_b&SEARCH_MASK)==SEARCH_MASK;
+}
