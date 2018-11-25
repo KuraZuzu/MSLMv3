@@ -158,11 +158,12 @@ void MotorManager::loop() {
 
         moved_rad += atan2(delta_r_distance - delta_l_distance, 77.7); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
-//        if(2 * pi < moved_rad){
-//            moved_rad
-//        }
+        k = (int32_t)(moved_rad / 2 / pi) + 1;
 
-        k = (int32_t)(moved_rad / 2 / pi);
+        if (moved_rad < pi * 2){
+            k = (int32_t)(moved_rad / 2 / pi) + 1;
+        }else if (moved_rad > pi)
+
         moved_rad = moved_rad / k;
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
@@ -170,13 +171,17 @@ void MotorManager::loop() {
         moved_x_distance += v * cos(3.14159265 / 2 + moved_rad) / 100;  //x軸
         moved_y_distance += v * sin(3.14159265 / 2 + moved_rad) / 100;  //y軸
 
-//        if(odometry_watch_count < 50) {
+
+
+
+
 //            printf("%d \r\n", l_v_log.size()/);
 //            l_v_log.push_back(delta_l_distance);
 //        }
 
 //        odometry_watch_count = (odometry_watch_count<99)?odometry_watch_count+1:odometry_watch_count;
 
+//        if(odometry_watch_count < 50) {
 
         //ここの条件分岐がおかしいよー
 //        if (pi * 1/4 >= moved_rad && moved_rad < pi * 3/4)

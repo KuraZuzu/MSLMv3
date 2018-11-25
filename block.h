@@ -28,7 +28,8 @@ public:
     bool is_opened_west_wall();
 
     uint8_t get_block_info(){ return _b;}
-    bool is_searched(){};
+//////////////とりあえずコンパイル通す為に強引に返り値設定/////
+    bool is_searched(){return 1;};
     void set_searched(){};
 
 };

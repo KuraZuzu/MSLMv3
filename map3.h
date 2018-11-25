@@ -19,13 +19,18 @@ public:
     void set_bock(Block _wall_info, Point point){}
 
     void set_wall(Block _wall_info){
-        int test;
         _block[(int)_point.x][(int)_point.y] = _wall_info;
     }
 
     void set_block(Position position){}
-    Block get_block(Point point){}
 
+///////////////////////////////////////強引に Block a と 返り値設定
+    Block get_block(Point point){
+
+        Block a;
+
+        return a;}
+////////////////////////////////////////
 
 private:
     Block **_block;
