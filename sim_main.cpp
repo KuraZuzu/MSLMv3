@@ -9,7 +9,7 @@ using namespace std;
 int main(){
     int x = 16, y = 16;
     Map3 map(16,16);
-    Point p;
+    Point <uint8_t>p;
     Block b;
     uint8_t t = 0;
     b.set_north_wall();
@@ -21,7 +21,7 @@ int main(){
             for (int j = 0; j < y; ++j) {
                 p.x = i;
                 p.y = j;
-                map.set_wall(b, p);
+                map.set_block(b, p);
             }
         }
         for (int i = 0; i < x; ++i) {
