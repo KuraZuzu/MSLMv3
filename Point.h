@@ -7,18 +7,19 @@
 
 #include <cmath>
 
+template <typename T>
 struct Point{
 
 public:
 
-    double_t x;
-    double_t y;
+    T x;
+    T y;
 
 
 };
 
 
-struct Position : public Point{
+struct Position : public Point<double_t>{
 
 
 public:

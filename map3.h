@@ -15,23 +15,21 @@ public:
 
     ~Map3();
 
-    void set_block(Block _wall_info, Point point){}
-
-    void set_wall(Block _wall_info, Point point){
+    void set_block(Block block, Point<uint8_t> point){
         _point = point;
-        _block[(int)_point.x][(int)_point.y] = _wall_info;
+        _block[_point.x][_point.y] = block;
+
     }
 
-    void set_block(Position position){}
-    Block get_block(Point point){
-        return _block[(int)point.x][(int)point.y];
+    Block get_block(Point<uint8_t> point){
+        return _block[point.x][point.y];
     }
 
 protected:
     Block **_block;
     uint8_t _x_size = 0;
     uint8_t _y_size = 0;
-    Point _point;
+    Point <uint8_t>_point;
 
     void map_init();
 
