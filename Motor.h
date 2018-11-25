@@ -65,13 +65,12 @@ private:
     int32_t delta_r_pulse;
     int32_t l_pulse;
     int32_t r_pulse;
-    float delta_l_distance;
-    float delta_r_distance;
-    float v;
-    float moved_x_distance;
-    float moved_y_distance;
-    float moved_rad;
-    int32_t k;
+    double_t delta_l_distance;
+    double_t delta_r_distance;
+    double_t v;
+    double_t moved_x_distance;
+    double_t moved_y_distance;
+    double_t moved_rad;
 
     unsigned int odometry_watch_count;
     char current_machine_direction = 0;  //0:北  1:東  2:南  3:西  4:南
@@ -93,6 +92,9 @@ public:
     float get_moved_x();
     float get_moved_y();
     float get_moved_rad();
+//    inline int32_t get_moved_rad(){
+//        return k;
+//    };
     unsigned int get_odometry_watch_count();
 
 
