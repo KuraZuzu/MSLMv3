@@ -27,7 +27,6 @@ public:
         return _block[(int)point.x][(int)point.y];
     }
 
-
 protected:
     Block **_block;
     uint8_t _x_size = 0;

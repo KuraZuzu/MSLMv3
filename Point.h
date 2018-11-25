@@ -11,8 +11,8 @@ struct Point{
 
 public:
 
-    float_t x;
-    float_t y;
+    double_t x;
+    double_t y;
 
 
 };
@@ -22,7 +22,7 @@ struct Position : public Point{
 
 
 public:
-    float_t rad;
+    double_t rad;
 
 };
 
