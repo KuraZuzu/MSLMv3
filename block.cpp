@@ -41,3 +41,7 @@ bool Block::is_opened_south_wall() {
 bool Block::is_opened_west_wall() {
     return (WEST_MASK & _b) == WEST_MASK;
 }
+
+void Block::reset_wall() {
+    _b = 0b00000000;
+}

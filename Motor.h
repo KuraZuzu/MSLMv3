@@ -70,6 +70,8 @@ private:
     float moved_x_distance;
     float moved_y_distance;
     float moved_rad;
+    int32_t k;
+
     unsigned int odometry_watch_count;
     char current_machine_direction = 0;  //0:北  1:東  2:南  3:西  4:南
     Vector<int> l_v_log;

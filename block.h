@@ -20,11 +20,14 @@ public:
     void set_east_wall();
     void set_south_wall();
     void set_west_wall();
+    void reset_wall();
 
     bool is_opened_north_wall();
     bool is_opened_east_wall();
     bool is_opened_south_wall();
     bool is_opened_west_wall();
+
+    uint8_t get_block_info(){ return _b;}
 
 };
 
