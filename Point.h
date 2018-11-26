@@ -12,6 +12,8 @@ template <typename T>
 struct Point{
 
 public:
+    Point():x(0),y(0){}
+    Point(T _x, T _y):x(_x),y(_y){}
 
     T x;
     T y;

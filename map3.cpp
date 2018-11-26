@@ -40,6 +40,7 @@ void Map3::map_init() {
 }
 
 void Map3::set_block(Block block, Point<uint8_t> point) {
+    _block[point.x][point.y].set_walk_cnt(block.get_walk_cnt());
     _block[point.x][point.y] = block;
     _block[point.x][point.y].set_searched();
     if(((block.get_block_info()&NORTH_MASK) == NORTH_MASK) && (point.y < _y_size-1)) {
@@ -51,10 +52,13 @@ void Map3::set_block(Block block, Point<uint8_t> point) {
     if(((block.get_block_info()&EAST_MASK) == EAST_MASK) && (point.x < _x_size-1)) {
         _block[point.x + 1][point.y].set_west_wall();
     }
+    if(((block.get_block_info()&SOUTH_MASK) == SOUTH_MASK) && (0 < point.y)) {
+        _block[point.x][point.y - 1].set_north_wall();
+    }
 
 }
 
-Block Map3::get_block(Point<uint8_t> point) {
+Block& Map3::at(Point<uint8_t> point) {
     return _block[point.x][point.y];
 }
 

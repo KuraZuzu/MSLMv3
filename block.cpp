@@ -55,3 +55,14 @@ void Block::set_searched() {
 bool Block::is_searched() {
     return (_b&SEARCH_MASK)==SEARCH_MASK;
 }
+
+Block::Block() {
+    _b = 0b00000000;
+    walk_cnt = 255;
+}
+
+void Block::set_walk_cnt(int walk_num) {
+    walk_cnt=walk_num;
+}
+
+int Block::get_walk_cnt() {return walk_cnt;}
