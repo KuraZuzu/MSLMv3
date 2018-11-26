@@ -150,12 +150,19 @@ void MotorManager::loop() {
 
         //タイヤのスペックは、直径28.0mm、モーターが1セットのパルス(2pulse)で0.9度回転
 
-        delta_l_distance = (delta_l_pulse) * 28 * pi / 400 / 2;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
-        delta_r_distance = (delta_r_pulse) * 28 * pi / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
+        delta_l_distance = (delta_l_pulse) * 28 * PI / 400 / 2;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
+        delta_r_distance = (delta_r_pulse) * 28 * PI / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
 
         v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
 
-        moved_rad += atan2(delta_r_distance - delta_l_distance, 77.7); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
+
+//        const double_t true_y = pow(delta_r_distance - delta_l_distance, 2.0);
+//        const double_t true_x = (77.7 * 77.7) - true_y;
+//
+//        moved_rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
+
+
+        moved_rad += atan2(delta_l_distance - delta_r_distance, 77.7);
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
