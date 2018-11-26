@@ -13,10 +13,11 @@ class Block {
 
 private:
                   //         NESW <- mask (North, East, South, West)//
-    uint8_t _b = 0b00000000;
-    int walk_cnt = 255;
+    uint8_t _b;
+    int walk_cnt;
 
 public:
+    Block();
 
     void set_north_wall();
     void set_east_wall();
@@ -32,6 +33,8 @@ public:
     uint8_t get_block_info();
     void set_searched();
     bool is_searched();
+    int get_walk_cnt();
+    void set_walk_cnt(int walk_num);
 };
 
 

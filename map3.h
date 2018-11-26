@@ -17,13 +17,19 @@ public:
 
     void set_block(Block block, Point<uint8_t> point);
 
-    Block get_block(Point<uint8_t> point);
+    Block& at(Point<uint8_t> point);
+
+    Point<uint8_t> size(){
+        return Point<uint8_t >(_x_size, _y_size);
+    }
 
 protected:
     Block **_block;
     uint8_t _x_size = 0;
     uint8_t _y_size = 0;
+
     Point <uint8_t>_point;
+
 
     void map_init();
 
