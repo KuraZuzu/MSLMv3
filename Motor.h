@@ -57,8 +57,6 @@ private:
     bool l_flag{false};
     bool r_flag{false};
 
-
-
     int32_t old_l_pulse;
     int32_t old_r_pulse;
     int32_t delta_l_pulse;
@@ -68,9 +66,6 @@ private:
     double_t delta_l_distance;
     double_t delta_r_distance;
     double_t v;
-    double_t moved_x_distance;
-    double_t moved_y_distance;
-    double_t moved_rad;
 
     unsigned int odometry_watch_count;
     char current_machine_direction = 0;  //0:北  1:東  2:南  3:西  4:南
@@ -84,14 +79,10 @@ public:
 
     void set_left_speed(double_t l_speed);
     void set_right_speed(double_t r_speed);
-    void set_coordinates(float x_coordinates, float y_coordinates);
     void set_odometry_watch_count(unsigned int odometry_count);
 
     char get_current_machine_direction();
     float get_v();
-    float get_moved_x();
-    float get_moved_y();
-    float get_moved_rad();
 //    inline int32_t get_moved_rad(){
 //        return k;
 //    };
@@ -100,8 +91,8 @@ public:
 
     int64_t  distance_counts();
 
-    int64_t left_distance();
-    int64_t right_distance();
+    double_t left_distance();
+    double_t right_distance();
 
     void reset_counts();
 
