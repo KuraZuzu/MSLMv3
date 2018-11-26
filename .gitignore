@@ -180,3 +180,4 @@ $RECYCLE.BIN/
 
 
 cmake_build_debug/
+.idea/
