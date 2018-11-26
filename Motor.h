@@ -91,8 +91,8 @@ public:
 
     int64_t  distance_counts();
 
-    int64_t left_distance();
-    int64_t right_distance();
+    double_t left_distance();
+    double_t right_distance();
 
     void reset_counts();
 

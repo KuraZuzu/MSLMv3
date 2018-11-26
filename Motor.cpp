@@ -97,12 +97,12 @@ void MotorManager::set_right_speed(double_t r_speed) {
 }
 
 
-int64_t MotorManager::left_distance() {
-    return _left_motor.pulse_counts();
+double_t MotorManager::left_distance() {
+    return _left_motor.pulse_counts() / (2000.0/218.0);
 }
 
-int64_t MotorManager::right_distance() {
-    return _right_motor.pulse_counts();
+double_t MotorManager::right_distance() {
+    return _right_motor.pulse_counts() / (2000.0/218.0);
 }
 
 void MotorManager::loop() {
@@ -162,7 +162,7 @@ void MotorManager::loop() {
 //        moved_rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
 
-        _position.rad += atan2(delta_l_distance - delta_r_distance, 77.7);
+        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
