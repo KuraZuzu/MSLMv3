@@ -21,14 +21,9 @@ public:
 
     PositionEstimator(Position& odometry);
     Position get_position(){ return _odometry;}
-    MapPosition get_map_position(){
-        MapPosition v;
-        v.x = _odometry.x / 180.0;
-        v.y = _odometry.y / 180.0;
-        return v;
-    }
+    MapPosition get_map_position();
 
-
+    void set_position(double_t x, double_t y, double_t rad);
 
 
 //
