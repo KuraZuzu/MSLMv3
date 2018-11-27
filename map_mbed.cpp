@@ -6,6 +6,7 @@
 
 void Map_Mbed::write_map() {
     uint8_t a = 0;
+    int tmp = 255;
     std::ofstream outputfile("map_data.txt");
     outputfile<<"+";
     for(uint8_t i = 0; i<_x_size; ++i) outputfile<<"---"<<"+";
@@ -13,9 +14,13 @@ void Map_Mbed::write_map() {
     for (uint8_t i = 0; i < _y_size; ++i) {
         outputfile<<"|";
         for (uint8_t j = 0; j < _x_size; ++j) {
-            outputfile<<at(_point).get_walk_cnt();
+            tmp = at(_point).get_walk_cnt();
+            if(tmp > 99) outputfile<<at(_point).get_walk_cnt();
+            else if(tmp > 9) outputfile<<" "<<at(_point).get_walk_cnt();
+            else if(tmp > -1) outputfile<<" "<<at(_point).get_walk_cnt()<<" ";
+            else outputfile << 999;
             _point.x=j;
-            _point.y=_y_size-1-i;
+            _point.y=_y_size -(uint8_t)1 -i;
             a = at(_point).get_wall();
             if(((a&EAST_MASK) == EAST_MASK) || (j == _x_size-1)) outputfile<<"|";
             else outputfile << " ";
@@ -25,7 +30,7 @@ void Map_Mbed::write_map() {
         outputfile<<"+";
         for (uint8_t j = 0; j < _x_size; ++j) {
             _point.x=j;
-            _point.y=_y_size-1-i;
+            _point.y=_y_size-(uint8_t)1-i;
             a = at(_point).get_wall();
             if(((a&SOUTH_MASK) == SOUTH_MASK) || (i == _y_size-1)) outputfile<<"---";
             else outputfile<<"   ";
