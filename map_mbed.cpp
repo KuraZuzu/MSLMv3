@@ -8,27 +8,27 @@ void Map_Mbed::write_map() {
     uint8_t a = 0;
     std::ofstream outputfile("map_data.txt");
     outputfile<<"+";
-    for(int i = 0; i<_x_size; ++i) outputfile<<"-"<<"+";
+    for(uint8_t i = 0; i<_x_size; ++i) outputfile<<"---"<<"+";
     outputfile<<std::endl;
-    for (int i = 0; i < _y_size; ++i) {
+    for (uint8_t i = 0; i < _y_size; ++i) {
         outputfile<<"|";
-        for (int j = 0; j < _x_size; ++j) {
-            outputfile<<"0";
+        for (uint8_t j = 0; j < _x_size; ++j) {
+            outputfile<<at(_point).get_walk_cnt();
             _point.x=j;
             _point.y=_y_size-1-i;
             a = at(_point).get_block_info();
-            if((a&0b00000100) == 4 || j == _x_size-1) outputfile<<"|";
-            else outputfile<<" ";
+            if(((a&EAST_MASK) == EAST_MASK) || (j == _x_size-1)) outputfile<<"|";
+            else outputfile << " ";
         }
 
         outputfile<<std::endl;
         outputfile<<"+";
-        for (int j = 0; j < _x_size; ++j) {
+        for (uint8_t j = 0; j < _x_size; ++j) {
             _point.x=j;
             _point.y=_y_size-1-i;
             a = at(_point).get_block_info();
-            if((a&0b00000010) == 2 || i == _y_size-1) outputfile<<"-";
-            else outputfile<<" ";
+            if(((a&SOUTH_MASK) == SOUTH_MASK) || (i == _y_size-1)) outputfile<<"---";
+            else outputfile<<"   ";
             outputfile<<"+";
         }
         outputfile<<std::endl;

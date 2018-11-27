@@ -55,7 +55,6 @@ void Map3::set_block(Block block, Point<uint8_t> point) {
     if(((block.get_block_info()&SOUTH_MASK) == SOUTH_MASK) && (0 < point.y)) {
         _block[point.x][point.y - 1].set_north_wall();
     }
-
 }
 
 Block& Map3::at(Point<uint8_t> point) {
