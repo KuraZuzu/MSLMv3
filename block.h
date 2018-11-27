@@ -35,6 +35,7 @@ public:
     bool is_searched();
     int get_walk_cnt();
     void set_walk_cnt(int walk_num);
+    uint8_t debug(){ return _b|NORTH_MASK;}
 };
 
 
