@@ -29,31 +29,32 @@ Map3::~Map3() {
 
 void Map3::map_init() {
     for(int i = 0; i < _x_size; i++){
-        _block[_x_size-1][i].set_west_wall();
-        _block[0][i].set_east_wall();
+        _block[_x_size-1][i].set_wall(WEST_MASK);
+        _block[0][i].set_wall(WEST_MASK);
     }
 
     for(int i = 0; i < _y_size; i++){
-        _block[i][0].set_south_wall();
-        _block[i][_y_size-1].set_north_wall();
+        _block[i][0].set_wall(SOUTH_MASK);
+        _block[i][_y_size-1].set_wall(SOUTH_MASK);
     }
 }
 
 void Map3::set_block(Block block, Point<uint8_t> point) {
     _block[point.x][point.y].set_walk_cnt(block.get_walk_cnt());
-    _block[point.x][point.y] = block;
     _block[point.x][point.y].set_searched();
-    if(((block.get_block_info()&NORTH_MASK) == NORTH_MASK) && (point.y < _y_size-1)) {
-        _block[point.x][point.y + 1].set_south_wall();
+    _block[point.x][point.y].set_wall(block.get_wall());
+
+    if(((block.get_wall()&NORTH_MASK) == NORTH_MASK) && (point.y < _y_size-1)) {
+        _block[point.x][point.y + 1].set_wall(SOUTH_MASK);
     }
-    if(((block.get_block_info()&WEST_MASK) == WEST_MASK) && (0 < point.x)) {
-        _block[point.x - 1][point.y].set_east_wall();
+    if(((block.get_wall()&WEST_MASK) == WEST_MASK) && (0 < point.x)) {
+        _block[point.x - 1][point.y].set_wall(EAST_MASK);
     }
-    if(((block.get_block_info()&EAST_MASK) == EAST_MASK) && (point.x < _x_size-1)) {
-        _block[point.x + 1][point.y].set_west_wall();
+    if(((block.get_wall()&EAST_MASK) == EAST_MASK) && (point.x < _x_size-1)) {
+        _block[point.x + 1][point.y].set_wall(WEST_MASK);
     }
-    if(((block.get_block_info()&SOUTH_MASK) == SOUTH_MASK) && (0 < point.y)) {
-        _block[point.x][point.y - 1].set_north_wall();
+    if(((block.get_wall()&SOUTH_MASK) == SOUTH_MASK) && (0 < point.y)) {
+        _block[point.x][point.y - 1].set_wall(NORTH_MASK);
     }
 }
 

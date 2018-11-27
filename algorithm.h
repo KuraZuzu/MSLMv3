@@ -25,7 +25,7 @@ void saitan(Map3 &map){
                 if(walk_map.at(v_point).get_walk_cnt()==255)
                     continue;
                 if(j < v_point.y-1){
-                    if((tmp_block.get_block_info() & NORTH_MASK) != NORTH_MASK){
+                    if((tmp_block.get_wall() & NORTH_MASK) != NORTH_MASK){
                         tmp_cnt = tmp_block.get_walk_cnt();
                         v_point.y++;
                         tmp_block = map.at(v_point);
@@ -36,7 +36,7 @@ void saitan(Map3 &map){
                     }
                 }
                 if(i < v_point.x-1){
-                    if((tmp_block.get_block_info() & EAST_MASK) != EAST_MASK){
+                    if((tmp_block.get_wall() & EAST_MASK) != EAST_MASK){
                         tmp_cnt = tmp_block.get_walk_cnt();
                         v_point.x++;
                         tmp_block = map.at(v_point);
@@ -47,7 +47,7 @@ void saitan(Map3 &map){
                     }
                 }
                 if(j>1){
-                    if((tmp_block.get_block_info() & SOUTH_MASK) != SOUTH_MASK){
+                    if((tmp_block.get_wall() & SOUTH_MASK) != SOUTH_MASK){
                         tmp_cnt = tmp_block.get_walk_cnt();
                         v_point.y--;
                         tmp_block = map.at(v_point);
@@ -58,7 +58,7 @@ void saitan(Map3 &map){
                     }
                 }
                 if(i>1){
-                    if((tmp_block.get_block_info() & WEST_MASK) != WEST_MASK){
+                    if((tmp_block.get_wall() & WEST_MASK) != WEST_MASK){
                         tmp_cnt = tmp_block.get_walk_cnt();
                         v_point.x--;
                         tmp_block = map.at(v_point);

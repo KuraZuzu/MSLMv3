@@ -19,23 +19,17 @@ private:
 public:
     Block();
 
-    void set_north_wall();
-    void set_east_wall();
-    void set_south_wall();
-    void set_west_wall();
+    void set_wall(uint8_t b);
     void reset_wall();
 
-    bool is_opened_north_wall();
-    bool is_opened_east_wall();
-    bool is_opened_south_wall();
-    bool is_opened_west_wall();
+    bool is_opened_wall(uint8_t t);
 
-    uint8_t get_block_info();
+    uint8_t get_wall();
     void set_searched();
     bool is_searched();
     int get_walk_cnt();
+
     void set_walk_cnt(int walk_num);
-    uint8_t debug(){ return _b|NORTH_MASK;}
 };
 
 
