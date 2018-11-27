@@ -29,13 +29,13 @@ Map3::~Map3() {
 
 void Map3::map_init() {
     for(int i = 0; i < _x_size; i++){
-        _block[_x_size-1][i].set_wall(WEST_MASK);
+        _block[_x_size-1][i].set_wall(NORTH_MASK);
         _block[0][i].set_wall(WEST_MASK);
     }
 
     for(int i = 0; i < _y_size; i++){
         _block[i][0].set_wall(SOUTH_MASK);
-        _block[i][_y_size-1].set_wall(SOUTH_MASK);
+        _block[i][_y_size-1].set_wall(NORTH_MASK);
     }
 }
 
