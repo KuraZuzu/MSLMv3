@@ -16,7 +16,9 @@ set(MSLM_SOURCE
         Point.cpp
         Point.h
         PositionEstimator.h
-        PositionEstimator.cpp algorithm.h)
+        PositionEstimator.cpp algorithm.h
+        SensorManager.h
+        SensorManager.cpp)
 
 set(MSLM_SIM_SOURCE
         block.cpp
