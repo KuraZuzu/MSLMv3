@@ -40,7 +40,7 @@ void Map3::map_init() {
 }
 
 void Map3::set_block(Block block, Point<uint8_t> point) {
-    _block[point.x][point.y].set_walk_cnt(block.get_walk_cnt());
+    _block[point.x][point.y].walk_cnt=block.walk_cnt;
     _block[point.x][point.y].set_searched();
     _block[point.x][point.y].set_wall(block.get_wall());
 

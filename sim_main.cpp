@@ -29,9 +29,9 @@ int main(){
     p.y=5;
 
     map.set_block(b, p);
-    map.write_map();
 
-    //saitan(map);
+    saitan(map);
+    map.write_map();
 
 
     return 0;
