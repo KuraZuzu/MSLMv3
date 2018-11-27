@@ -7,68 +7,56 @@
 
 //#include "Motor.h"
 #include "Point.h"
+#include "SensorManager.h"
+#include "map3.h"
+#include "block.h"
 
 class PositionEstimator {
-
 private:
-
-
     Position& _odometry;
-
     Position _world_position;
+    SensorManager& _sensor;
 
 public:
 
-    PositionEstimator(Position& odometry);
+    PositionEstimator(Position& odometry, SensorManager& sensor);
     Position get_position(){ return _odometry;}
-    MapPosition get_map_position();
+    MapPosition& get_map_position();
+    void update_map(Map3& _map){
+        MapPosition pos = get_map_position();
+        Block b;
+        uint8_t wall = 0;
+        switch (pos.direction){
+            case NORTH_MASK:
+                wall |= (!_sensor.is_opened_left_wall())? WEST_MASK:0;
+                wall |= (!_sensor.is_opened_center_wall())? NORTH_MASK:0;
+                wall |= (!_sensor.is_opened_right_wall())? EAST_MASK:0;
+                break;
+
+            case EAST_MASK:
+                wall |= (!_sensor.is_opened_left_wall())? NORTH_MASK:0;
+                wall |= (!_sensor.is_opened_center_wall())? EAST_MASK:0;
+                wall |= (!_sensor.is_opened_right_wall())? SOUTH_MASK:0;
+                break;
+
+            case SOUTH_MASK:
+                wall |= (!_sensor.is_opened_left_wall())? EAST_MASK:0;
+                wall |= (!_sensor.is_opened_center_wall())? SOUTH_MASK:0;
+                wall |= (!_sensor.is_opened_right_wall())? WEST_MASK:0;
+                break;
+
+            case WEST_MASK:
+                wall |= (!_sensor.is_opened_left_wall())? SOUTH_MASK:0;
+                wall |= (!_sensor.is_opened_center_wall())? WEST_MASK:0;
+                wall |= (!_sensor.is_opened_right_wall())? NORTH_MASK:0;
+                break;
+        }
+
+        b.set_wall(wall);
+        _map.set_block(b, pos);
+    }
 
     void set_position(double_t x, double_t y, double_t rad);
-
-
-//
-//    Position get_current_x_mm (float_t odometry_x){
-//
-////        odometry_x = motor.get_moved_x();
-//
-//        return odometry_x;
-//    };
-//
-//
-//    float_t get_current_y_mm (float_t odometry_y){
-//
-//        odometry_y = motor.get_moved_y();
-//
-//        return odometry_y;
-//    };
-//
-//
-//
-//    int get_current_x_block (float_t odometry_x){
-//
-//        odometry_x = motor.get_moved_x();
-//
-//        return (int) odometry_x / 180;
-//    };
-//
-//    int get_current_y_block (float_t odometry_y){
-//
-//        odometry_y = motor.get_moved_y();
-//
-//        return (int) odometry_y / 180;
-//    };
-//
-//
-//    int get_rad (float_t odometry_rad){
-//
-//        odometry_rad = motor.get_moved_rad();
-//
-//        if (motor.get_moved_rad() < -2 * 3.14159265){
-//             odometry_rad = -2 * 3.14159265
-//        }
-//
-//        return
-//    };
 
 };
 
