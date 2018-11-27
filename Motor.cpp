@@ -166,8 +166,8 @@ void MotorManager::loop() {
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
-        _position.x += v * cos(3.14159265 / 2 + _position.rad) / 100;  //x軸
-        _position.y += v * sin(3.14159265 / 2 + _position.rad) / 100;  //y軸
+        _position.x += v * sin(_position.rad) / 100;  //x軸
+        _position.y += v * cos(_position.rad) / 100;  //y軸
 
 
         odometry_watch_count++;

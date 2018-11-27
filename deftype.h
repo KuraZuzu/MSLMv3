@@ -18,10 +18,10 @@
 #define WEST			0x01
 
 #define  SEARCH_MASK 0b00010000
-#define NORTH_MASK 0b00001000
-#define EAST_MASK 0b00000100
-#define SOUTH_MASK 0b00000010
-#define WEST_MASK 0b00000001
+#define NORTH_MASK 0b00001000 //8
+#define EAST_MASK 0b00000100  //4
+#define SOUTH_MASK 0b00000010 //2
+#define WEST_MASK 0b00000001  //1
 
 //Base Define
 #define HIGH            true
