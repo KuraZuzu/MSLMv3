@@ -36,6 +36,9 @@ public:
     int64_t pulse_counts();
 
     void set_wise(bool wise);
+    bool get_wise(){
+        return _wise==_forward_wise;
+    }
 
 };
 
@@ -69,7 +72,6 @@ private:
 
     unsigned int odometry_watch_count;
     char current_machine_direction = 0;  //0:北  1:東  2:南  3:西  4:南
-    Vector<int> l_v_log;
     int v_count;
 
 public:

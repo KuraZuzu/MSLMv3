@@ -29,19 +29,19 @@ MapPosition PositionEstimator::get_map_position() {
     const double_t r_x = (current_x * cos(PI/4)) - (current_y * sin(PI/4));
     const double_t r_y = (current_x * sin(PI/4)) + (current_y * cos(PI/4));
 
-    if ((0 < r_x) && (0 < r_y)) {
+    if ((0. < r_x) && (0. < r_y)) {
 
 //        v.direction = NORTH_MASK;
         v.direction = WEST_MASK;
 
 
-    } else if ((0 < r_x) && (r_y < 0)) {
+    } else if ((0. < r_x) && (r_y < 0.)) {
 
 //        v.direction = WEST_MASK;
         v.direction = SOUTH_MASK;
 
 
-    } else if ((r_x < 0) && (r_y < 0)) {
+    } else if ((r_x < 0.) && (r_y < 0.)) {
 
 //        v.direction = SOUTH_MASK;
         v.direction = EAST_MASK;
