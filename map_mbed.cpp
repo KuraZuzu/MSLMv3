@@ -15,13 +15,13 @@ void Map_Mbed::write_map() {
     for (uint8_t i = 0; i < _y_size; ++i) {
         outputfile<<"|";
         for (uint8_t j = 0; j < _x_size; ++j) {
-            tmp = at(_point).walk_cnt;
-            if(99<tmp && tmp<256) outputfile<<at(_point).walk_cnt;
-            else if(9<tmp && tmp<100) outputfile<<" "<<at(_point).walk_cnt;
-            else if(-1<tmp && tmp<10) outputfile<<" "<<at(_point).walk_cnt<<" ";
-            else outputfile << "err";
             _point.x=j;
             _point.y=_y_size -(uint8_t)1 -i;
+            tmp = at(_point).walk_cnt;
+            if(99<tmp && tmp<256) outputfile<<tmp;
+            else if(9<tmp && tmp<100) outputfile<<" "<<tmp;
+            else if(-1<tmp && tmp<10) outputfile<<" "<<tmp<<" ";
+            else outputfile << "err";
             a = at(_point).get_wall();
             if(((a&EAST_MASK) == EAST_MASK) || (j == _x_size-1)) outputfile<<"|";
             else outputfile << " ";

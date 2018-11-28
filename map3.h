@@ -25,6 +25,9 @@ public:
     ~Map3();
 
     void set_block(Block block, Point<uint8_t> point);
+    void set_walk_cnt(Point<uint8_t> point, int walk_cnt){
+        _block[point.x][point.y].walk_cnt = walk_cnt;
+    }
 
     Block& at(Point<uint8_t> point);
 
