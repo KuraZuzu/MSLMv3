@@ -4,6 +4,7 @@
 
 #include "map_mbed.h"
 
+
 void Map_Mbed::write_map() {
     uint8_t a = 0;
     int tmp = 255;
@@ -14,11 +15,11 @@ void Map_Mbed::write_map() {
     for (uint8_t i = 0; i < _y_size; ++i) {
         outputfile<<"|";
         for (uint8_t j = 0; j < _x_size; ++j) {
-            tmp = at(_point).get_walk_cnt();
-            if(tmp > 99) outputfile<<at(_point).get_walk_cnt();
-            else if(tmp > 9) outputfile<<" "<<at(_point).get_walk_cnt();
-            else if(tmp > -1) outputfile<<" "<<at(_point).get_walk_cnt()<<" ";
-            else outputfile << 999;
+            tmp = at(_point).walk_cnt;
+            if(99<tmp && tmp<256) outputfile<<at(_point).walk_cnt;
+            else if(9<tmp && tmp<100) outputfile<<" "<<at(_point).walk_cnt;
+            else if(-1<tmp && tmp<10) outputfile<<" "<<at(_point).walk_cnt<<" ";
+            else outputfile << "err";
             _point.x=j;
             _point.y=_y_size -(uint8_t)1 -i;
             a = at(_point).get_wall();
