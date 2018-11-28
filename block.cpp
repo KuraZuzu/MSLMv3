@@ -19,7 +19,9 @@ void Block::reset_wall() {
     _b = 0b00000000;
 }
 
-uint8_t Block::get_wall() { return _b;}
+uint8_t Block::get_wall() {
+    return 0b1111 & _b;
+}
 
 void Block::set_searched() {
     _b |= SEARCH_MASK;

@@ -16,7 +16,7 @@ void PositionEstimator::set_position(double_t x, double_t y, double_t rad) {
     _odometry.rad = rad;
 }
 
-MapPosition& PositionEstimator::get_map_position() {
+MapPosition PositionEstimator::get_map_position() {
     MapPosition v;
     v.x = _odometry.x / 180.0;
     v.y = _odometry.y / 180.0;
