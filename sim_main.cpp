@@ -13,7 +13,7 @@ using namespace std;
 
 int main(){
     int x = 16, y = 16;
-    Map_Mbed map(16,16);
+    Map_Mbed map(16,16);//デバッグするためにMapMbed型になってます
     Point <uint8_t> p;
     Block b;
     b.set_wall(SOUTH_MASK);
@@ -36,7 +36,7 @@ int main(){
 
     //以下walkmap生成
 
-    saitan(map);
+    saitan(map);//これもデバッグ用に引数がMapMbedになってます
 
     map.write_map();
 
