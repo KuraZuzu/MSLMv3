@@ -159,10 +159,22 @@ void MotorManager::loop() {
 //        const double_t true_y = pow(delta_r_distance - delta_l_distance, 2.0);
 //        const double_t true_x = (77.7 * 77.7) - true_y;
 //
-//        moved_rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
+//        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
+////////////////////これが最終////////////////////////////////////////////////////
+//        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);////
+////////////////////////////////////////////////////////////////////////////////
+
+//        double_t omega_l = (double_t)delta_l_pulse / (800 * 0.01) * 2 * PI;
+//        double_t omega_r = (double_t)delta_r_pulse / (800 * 0.01) * 2 * PI;
+//        _position.rad = (28.0 / (2*PI / omega_r) * omega_r) - (28.0 / (2*PI / omega_l) * omega_l);
+
+//        double_t temp_width;
+//        temp_width = abs(sqrt(((r_pulse - l_pulse) * (r_pulse - l_pulse)) + (77.7 * 77.7)));
+//        _position.rad += atan2(delta_r_distance - delta_l_distance, temp_width);
 
         _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);
+
 
         //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
         //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.

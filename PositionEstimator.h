@@ -21,7 +21,7 @@ public:
 
     PositionEstimator(Position& odometry, SensorManager& sensor);
     Position get_position(){ return _odometry;}
-    MapPosition get_map_position();
+    MapPosition get_map_position(); //マップ上の何ブロックにいるか
     void update_map(Map3& _map){
         MapPosition pos = get_map_position();
         Block b;
