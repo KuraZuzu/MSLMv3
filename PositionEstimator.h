@@ -58,6 +58,13 @@ public:
 
     void set_position(double_t x, double_t y, double_t rad);
 
+    //新規追加
+    uint8_t get_wall(){
+        Block block;
+        return block.get_wall();
+    }
+
+
 };
 
 

@@ -27,6 +27,8 @@ set(MSLM_SIM_SOURCE
         sim_main.cpp
         map_mbed.cpp)
 
+set(CMAKE_CXX_STANDARD 11)
+
 add_library(MSLM ${MSLM_SOURCE})
 
 target_link_libraries(MSLM ${MBED_LIBS})

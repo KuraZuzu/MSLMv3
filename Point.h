@@ -77,8 +77,15 @@ public:
     uint8_t direction;
 
 
+    explicit operator Point<uint8_t>(){
+        Point<uint8_t> p;
+        p.x = x;
+        p.y = y;
+        return p;
+    }
+
     bool operator==(const MapPosition& _p)const{
-        return ((x ==_p.x) && (y == _p.y) && (direction == _p.direction));
+        return ((x ==_p.x) && (y == _p.y));
     }
 
     bool operator!=(const MapPosition& _p)const{

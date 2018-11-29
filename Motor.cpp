@@ -54,7 +54,7 @@ void StepMotor::reset_count() {
 }
 
 MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
-        _left_motor(left), _right_motor(right), RefOut(refout), l_v_log(){
+        _left_motor(left), _right_motor(right), RefOut(refout){
 
     v_count = 0;
     odometry_watch_count = 0;
@@ -107,13 +107,16 @@ double_t MotorManager::right_distance() {
 
 void MotorManager::loop() {
 
-//    if (v_count == 0)
-//        odometry_watch_count = 0;
+////    if (v_count == 0)
+////        odometry_watch_count = 0;
 
     if ((_l_speed <= l_t) && l_flag) {
         _left_motor.step();   //一回通過で1パルス(立ち上がりor立ち下がりのみなので、1パルスのみでは動いてない)
         l_t = 0;
-        l_pulse++;
+        if(_left_motor.get_wise())
+            l_pulse++;
+        else
+            l_pulse--;
 
     } else {
         l_t++;
@@ -123,11 +126,34 @@ void MotorManager::loop() {
     if ((_r_speed <= r_t) && r_flag) {
         _right_motor.step();
         r_t = 0;
-        r_pulse++;
+        if(_right_motor.get_wise())
+            r_pulse++;
+        else
+            r_pulse--;
 
     } else{
         r_t++;
     }
+//
+//    if ((_l_speed <= l_t) && l_flag) {
+//        _left_motor.step();   //一回通過で1パルス(立ち上がりor立ち下がりのみなので、1パルスのみでは動いてない)
+//        l_t = 0;
+//        l_pulse++;
+//
+//    } else {
+//        l_t++;
+//    }
+//
+//
+//    if ((_r_speed <= r_t) && r_flag) {
+//        _right_motor.step();
+//        r_t = 0;
+//        r_pulse++;
+//
+//    } else {
+//        r_t++;
+//    }
+
 
 
 //    v_count++;  //サンプリングレートのためのカウント
@@ -137,12 +163,12 @@ void MotorManager::loop() {
         delta_l_pulse = l_pulse - old_l_pulse;
         delta_r_pulse = r_pulse - old_r_pulse;
 
-
-        if (_left_motor.pulse_counts() < 0)     //もし、モータが逆転していたら、pulse_counts の値は負の値となるので、
-            delta_l_pulse = -delta_l_pulse;     //パルスの変化量(delta_pulse)の値が負の値となる
-
-        if (_right_motor.pulse_counts() < 0)
-            delta_r_pulse = -delta_r_pulse;
+//
+//        if (_left_motor.pulse_counts() < 0)     //もし、モータが逆転していたら、pulse_counts の値は負の値となるので、
+//            delta_l_pulse = -delta_l_pulse;     //パルスの変化量(delta_pulse)の値が負の値となる
+//
+//        if (_right_motor.pulse_counts() < 0)
+//            delta_r_pulse = -delta_r_pulse;
 
 
         old_l_pulse = l_pulse;
@@ -155,31 +181,18 @@ void MotorManager::loop() {
 
         v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
 
+        _position.rad += (delta_r_distance - delta_l_distance) / 77.7;//a
 
 //        const double_t true_y = pow(delta_r_distance - delta_l_distance, 2.0);
 //        const double_t true_x = (77.7 * 77.7) - true_y;
-//
 //        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
-////////////////////これが最終////////////////////////////////////////////////////
-//        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);////
-////////////////////////////////////////////////////////////////////////////////
+////////////////////これが最終///////////////////////////////////////////////////
+//        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);/////
+///////////////////////////////////////////////////////////////////////////////
 
-//        double_t omega_l = (double_t)delta_l_pulse / (800 * 0.01) * 2 * PI;
-//        double_t omega_r = (double_t)delta_r_pulse / (800 * 0.01) * 2 * PI;
-//        _position.rad = (28.0 / (2*PI / omega_r) * omega_r) - (28.0 / (2*PI / omega_l) * omega_l);
-
-//        double_t temp_width;
-//        temp_width = abs(sqrt(((r_pulse - l_pulse) * (r_pulse - l_pulse)) + (77.7 * 77.7)));
-//        _position.rad += atan2(delta_r_distance - delta_l_distance, temp_width);
-
-        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);
-
-
-        //オドメトリの角度は x軸に対しての rad であり、ロボットの初期角度は 90[deg] = 1/2 π　であるので、その差分で計算している.
-        //最後の "/ 100"は、走った時間 t が 0.01s なので、秒速である v に対しての係数.
-        _position.x += v * cos(3.14159265 / 2 + _position.rad) / 100;  //x軸
-        _position.y += v * sin(3.14159265 / 2 + _position.rad) / 100;  //y軸
+        _position.x += v * cos(PI/2 + _position.rad) / 100;  //x軸
+        _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸
 
 
         odometry_watch_count++;
