@@ -5,8 +5,8 @@
 #ifndef MSLMV3_ALGORITHM_H
 #define MSLMV3_ALGORITHM_H
 
-#include "iostream"
-void saitan(Map_Mbed &map, uint8_t x, uint8_t y){
+#include "map3.h"
+void make_walkmap(Map3 &map, uint8_t x, uint8_t y){
     int tmp_cnt = 0;
     Point<uint8_t > v_point, c_point;
     Block tmp_block;
