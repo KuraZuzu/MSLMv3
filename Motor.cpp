@@ -163,7 +163,7 @@ void MotorManager::loop() {
 
 //        double_t d_origin_to_machine = (77.7 / ((double_t)r_pulse/l_pulse - 2)) + (77.7 / 2);
 
-        _position.rad += (delta_r_distance - delta_l_distance) / 77.7;//a
+//        _position.rad += (delta_r_distance - delta_l_distance) / 77.7;//a
 
 //        const double_t true_y = pow(delta_r_distance - delta_l_distance, 2.0);
 //        const double_t true_x = (77.7 * 77.7) - true_y;
@@ -171,7 +171,7 @@ void MotorManager::loop() {
 //        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
 ////////////////////これが最終///////////////////////////////////////////////////
-//        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);/////
+        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);/////
 ///////////////////////////////////////////////////////////////////////////////
 
 //        double_t omega_l = (double_t)delta_l_pulse / (800 * 0.01) * 2 * PI;
