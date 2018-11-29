@@ -5,10 +5,8 @@
 #ifndef MSLMV3_MAP_MBED_H
 #define MSLMV3_MAP_MBED_H
 
-#include "mbed.h"
 #include "map3.h"
-//#include "fstream"
-LocalFileSystem local("local");
+#include "fstream"
 
 class Map_Mbed : public Map3 {
 public:

@@ -8,41 +8,37 @@
 void Map_Mbed::write_map() {
     uint8_t a = 0;
     int tmp = 255;
-    //std::ofstream outputfile("map_data.txt");
-    FILE *fp;
+    std::ofstream outputfile("map_data.txt");
 
-    fp = fopen("/local/tset.txt", "w");  // ファイルを書き込みモードで開く
-    //outputfile<<"+";
-    fprintf(fp, "+");
-    for(uint8_t i = 0; i<_x_size; ++i) fprintf(fp, "---+");//outputfile<<"---"<<"+";
-    //outputfile<<std::endl;
-    fprintf(fp, "\n");
+    outputfile<<"+";
+    for(uint8_t i = 0; i<_x_size; ++i) outputfile<<"---"<<"+";
+    outputfile<<std::endl;
     for (uint8_t i = 0; i < _y_size; ++i) {
-        fprintf(fp, "|");//outputfile<<"|";
+        outputfile<<"|";
         for (uint8_t j = 0; j < _x_size; ++j) {
             _point.x=j;
             _point.y=_y_size -(uint8_t)1 -i;
             tmp = at(_point).walk_cnt;
-            if(99<tmp && tmp<256) fprintf(fp, "%d", tmp);//outputfile<<tmp;
-            else if(9<tmp && tmp<100) fprintf(fp, " %d", tmp);//outputfile<<" "<<tmp;
-            else if(-1<tmp && tmp<10) fprintf(fp, " %d ", tmp);//outputfile<<" "<<tmp<<" ";
-            else fprintf(fp, "err");//outputfile << "err";
+            if(99<tmp && tmp<256) outputfile<<tmp;
+            else if(9<tmp && tmp<100) outputfile<<" "<<tmp;
+            else if(-1<tmp && tmp<10) outputfile<<" "<<tmp<<" ";
+            else outputfile << "err";
             a = at(_point).get_wall();
-            if(((a&EAST_MASK) == EAST_MASK) || (j == _x_size-1)) fprintf(fp, "|");//outputfile<<"|";
-            else fprintf(fp, " ");//outputfile << " ";
+            if(((a&EAST_MASK) == EAST_MASK) || (j == _x_size-1)) outputfile<<"|";
+            else outputfile << " ";
         }
 
-        fprintf(fp, "\n");//outputfile<<std::endl;
-        fprintf(fp, "+");//outputfile<<"+";
+        outputfile<<std::endl;
+        outputfile<<"+";
         for (uint8_t j = 0; j < _x_size; ++j) {
             _point.x=j;
             _point.y=_y_size-(uint8_t)1-i;
             a = at(_point).get_wall();
-            if(((a&SOUTH_MASK) == SOUTH_MASK) || (i == _y_size-1)) fprintf(fp, "---");//outputfile<<"---";
-            else fprintf(fp, "   ");//outputfile<<"   ";
-            fprintf(fp, "+");//outputfile<<"+";
+            if(((a&SOUTH_MASK) == SOUTH_MASK) || (i == _y_size-1)) outputfile<<"---";
+            else outputfile<<"   ";
+            outputfile<<"+";
         }
-        fprintf(fp, "\n");//outputfile<<std::endl;
+        outputfile<<std::endl;
     }
     outputfile.close();
     /*int i, j;
