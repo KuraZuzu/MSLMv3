@@ -84,14 +84,13 @@ public:
     void set_odometry_watch_count(unsigned int odometry_count);
 
     char get_current_machine_direction();
-    float get_v();
 //    inline int32_t get_moved_rad(){
 //        return k;
 //    };
     unsigned int get_odometry_watch_count();
 
 
-    int64_t  distance_counts();
+    int64_t distance_counts();
 
     double_t left_distance();
     double_t right_distance();

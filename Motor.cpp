@@ -134,25 +134,6 @@ void MotorManager::loop() {
     } else{
         r_t++;
     }
-//
-//    if ((_l_speed <= l_t) && l_flag) {
-//        _left_motor.step();   //一回通過で1パルス(立ち上がりor立ち下がりのみなので、1パルスのみでは動いてない)
-//        l_t = 0;
-//        l_pulse++;
-//
-//    } else {
-//        l_t++;
-//    }
-//
-//
-//    if ((_r_speed <= r_t) && r_flag) {
-//        _right_motor.step();
-//        r_t = 0;
-//        r_pulse++;
-//
-//    } else {
-//        r_t++;
-//    }
 
 
 
@@ -162,13 +143,6 @@ void MotorManager::loop() {
 
         delta_l_pulse = l_pulse - old_l_pulse;
         delta_r_pulse = r_pulse - old_r_pulse;
-
-//
-//        if (_left_motor.pulse_counts() < 0)     //もし、モータが逆転していたら、pulse_counts の値は負の値となるので、
-//            delta_l_pulse = -delta_l_pulse;     //パルスの変化量(delta_pulse)の値が負の値となる
-//
-//        if (_right_motor.pulse_counts() < 0)
-//            delta_r_pulse = -delta_r_pulse;
 
 
         old_l_pulse = l_pulse;
@@ -187,12 +161,9 @@ void MotorManager::loop() {
 //        const double_t true_x = (77.7 * 77.7) - true_y;
 //        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
-////////////////////これが最終///////////////////////////////////////////////////
-//        _position.rad += atan2(delta_r_distance - delta_l_distance, 77.7);/////
-///////////////////////////////////////////////////////////////////////////////
 
-        _position.x += v * cos(PI/2 + _position.rad) / 100;  //x軸
-        _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸
+        _position.x += v * cos(PI/2 + _position.rad) / 100 * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
+        _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸  *(630/631)は、誤差のフィルターとして実装
 
 
         odometry_watch_count++;
@@ -213,12 +184,6 @@ void MotorManager::set_odometry_watch_count(unsigned int odometry_count) {
 unsigned int MotorManager::get_odometry_watch_count() {
     return odometry_watch_count;
 }
-
-float MotorManager::get_v() {
-    return v;
-}
-
-
 
 
 void MotorManager::init(timestamp_t tick_speed) {
@@ -245,5 +210,5 @@ void MotorManager::motor_off() {
 }
 
 int64_t MotorManager::distance_counts() {
-    return (left_distance() + right_distance()) / 2;
+    return (int64_t)(left_distance() + right_distance()) / 2;
 }
