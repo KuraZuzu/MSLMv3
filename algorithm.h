@@ -6,13 +6,13 @@
 #define MSLMV3_ALGORITHM_H
 
 #include "iostream"
-void saitan(Map_Mbed &map){
+void saitan(Map_Mbed &map, uint8_t x, uint8_t y){
     int tmp_cnt = 0;
     Point<uint8_t > v_point, c_point;
     Block tmp_block;
     bool change_flg=false;
-    c_point.x=(uint8_t)7;
-    c_point.y=(uint8_t)7;
+    c_point.x=x;
+    c_point.y=y;
     map.set_walk_cnt(c_point, 0);
     do {
         change_flg = false;

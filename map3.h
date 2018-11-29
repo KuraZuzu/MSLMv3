@@ -35,6 +35,7 @@ public:
         return Point<uint8_t >(_x_size, _y_size);
     }
 
+
 protected:
     Block **_block;
     uint8_t _x_size = 0;
