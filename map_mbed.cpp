@@ -40,7 +40,7 @@ void Map_Mbed::write_map() {
         }
         outputfile<<std::endl;
     }
-    outputfile.close();
+    fclose(fp);//outputfile.close();
     /*int i, j;
     uint8_t a = 0;
     FILE *fp;
