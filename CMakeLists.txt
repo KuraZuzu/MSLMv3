@@ -16,7 +16,7 @@ set(MSLM_SOURCE
         Point.cpp
         Point.h
         PositionEstimator.h
-        PositionEstimator.cpp algorithm.h
+        PositionEstimator.cpp
         SensorManager.h
         SensorManager.cpp)
 
@@ -25,7 +25,8 @@ set(MSLM_SIM_SOURCE
         map3.cpp
         Simulator.cpp
         sim_main.cpp
-        map_mbed.cpp)
+        map_mbed.cpp
+        )
 
 set(CMAKE_CXX_STANDARD 11)
 
