@@ -16,27 +16,36 @@ int main(){
     Map_Mbed map(16,16);//デバッグするためにMapMbed型になってます
     Point <uint8_t> p;
     Block b;
-    b.set_wall(SOUTH_MASK);
-
-    for (int i = 1; i < x-1; i+=2) {
-        for (int j = 1; j < y; ++j) {
-            p.x = i;
-            p.y = j;
-            map.set_block(b, p);
-        }
-    }
-    b.set_wall(NORTH_MASK);
-    b.set_wall(SOUTH_MASK);
-    b.set_wall(EAST_MASK);
-    b.set_wall(WEST_MASK);
-    p.x=2;
-    p.y=9;
-    map.set_block(b, p);
 
 
     //以下walkmap生成
 
-    saitan(map);//これもデバッグ用に引数がMapMbedになってます
+    p.x=0;
+    p.y=0;
+    b.set_wall(7);
+    map.set_block(b, p);
+    p.x=0;
+    p.y=1;
+    b.reset_wall();
+    b.set_wall(1);
+    map.set_block(b, p);
+    saitan(map, 2, 2);
+    p.x=0;
+    p.y=2;
+    b.reset_wall();
+    b.set_wall(5);
+    map.set_block(b, p);
+    saitan(map, 2, 2);
+    /*
+    p.x=0;
+    p.y=3;
+    b.reset_wall();
+    b.set_wall(9);
+    map.set_block(b, p);*/
+    p.x=1;
+    p.y=2;
+    //cout << (int)map.at(p).get_wall();
+    saitan(map, 2, 2);
 
     map.write_map();
 
