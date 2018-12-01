@@ -58,7 +58,7 @@ MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
 
     v_count = 0;
     odometry_watch_count = 0;
-    RefOut.write(static_cast<float>(0.05 / 3.3));
+    RefOut.write(static_cast<float>(0.08 / 3.3));
     l_flag = false;
     r_flag = false;
 }
@@ -162,7 +162,7 @@ void MotorManager::loop() {
 //        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
 
-        _position.x += v * cos(PI/2 + _position.rad) / 100; // * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
+        _position.x += v * cos(PI/2 + _position.rad) / 100 ; // * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
         _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸  *(630/631)は、誤差のフィルターとして実装
 
 
