@@ -11,7 +11,7 @@
 #include "vector.h"
 #include "../defines.h"
 
-#define MEAN_SIZE 5
+#define MEAN_SIZE 20
 
 class SensorManager {
 
