@@ -8,14 +8,15 @@
 #include "deftype.h"
 #include "mbed.h"
 #include "sensor.h"
+#include "vector.h"
+#include "../defines.h"
 
-
-#define WALL_TH 170.0
+#define MEAN_SIZE 5
 
 class SensorManager {
 
     DistanceSensor left_sensor, front_sensor, right_sensor;
-
+//    Vector<int32_t> ls,rs,fs;
 
 public:
 
@@ -24,15 +25,35 @@ public:
     };
 
     inline bool is_opened_left_wall() {
-        return left_sensor >= WALL_TH;
+        int32_t  mean=0;
+        for (int i = 0; i < MEAN_SIZE; ++i) {
+//            ls.push_back(left_sensor);
+            mean += left_sensor;
+        }
+        mean = mean / MEAN_SIZE;
+
+        return mean >= WALL_TH;
     }
 
-    inline bool is_opened_center_wall() {
-        return front_sensor >= WALL_TH;
+    inline bool is_opened_front_wall() {
+        int32_t mean =0;
+        for (int i = 0; i < MEAN_SIZE; ++i) {
+            mean += front_sensor;
+        }
+        mean = mean / MEAN_SIZE;
+
+        return mean >= WALL_TH;
     }
 
     inline bool is_opened_right_wall() {
-        return right_sensor >= WALL_TH;
+        int32_t mean = 0;
+        for (int i = 0; i < MEAN_SIZE; ++i) {
+            mean += right_sensor;
+
+        }
+        mean = mean / MEAN_SIZE;
+
+        return mean >= WALL_TH;
     }
 
     inline int get_front_wall_distance() {

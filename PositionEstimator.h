@@ -29,25 +29,25 @@ public:
         switch (pos.direction){
             case NORTH_MASK:
                 wall |= (!_sensor.is_opened_left_wall())? WEST_MASK:0;
-                wall |= (!_sensor.is_opened_center_wall())? NORTH_MASK:0;
+                wall |= (!_sensor.is_opened_front_wall())? NORTH_MASK:0;
                 wall |= (!_sensor.is_opened_right_wall())? EAST_MASK:0;
                 break;
 
             case EAST_MASK:
                 wall |= (!_sensor.is_opened_left_wall())? NORTH_MASK:0;
-                wall |= (!_sensor.is_opened_center_wall())? EAST_MASK:0;
+                wall |= (!_sensor.is_opened_front_wall())? EAST_MASK:0;
                 wall |= (!_sensor.is_opened_right_wall())? SOUTH_MASK:0;
                 break;
 
             case SOUTH_MASK:
                 wall |= (!_sensor.is_opened_left_wall())? EAST_MASK:0;
-                wall |= (!_sensor.is_opened_center_wall())? SOUTH_MASK:0;
+                wall |= (!_sensor.is_opened_front_wall())? SOUTH_MASK:0;
                 wall |= (!_sensor.is_opened_right_wall())? WEST_MASK:0;
                 break;
 
             case WEST_MASK:
                 wall |= (!_sensor.is_opened_left_wall())? SOUTH_MASK:0;
-                wall |= (!_sensor.is_opened_center_wall())? WEST_MASK:0;
+                wall |= (!_sensor.is_opened_front_wall())? WEST_MASK:0;
                 wall |= (!_sensor.is_opened_right_wall())? NORTH_MASK:0;
                 break;
         }

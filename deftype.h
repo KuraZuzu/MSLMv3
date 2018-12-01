@@ -4,8 +4,6 @@
 #include <inttypes.h>
 
 #define PI 3.14159265
-#define CIRCLE_R 28.0 //タイヤの半径
-#define WIDTH 77.7 //マシンの車幅
 
 
 //Public Function Relation

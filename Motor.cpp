@@ -3,7 +3,7 @@
 //
 #include "Motor.h"
 #include "deftype.h"
-
+#include "../defines.h"
 
 //コンストラクタ
 StepMotor::StepMotor(PinName clock, PinName reset, PinName wise, bool default_wise, PinName m3):
@@ -155,7 +155,7 @@ void MotorManager::loop() {
 
         v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
 
-        _position.rad += (delta_r_distance - delta_l_distance) / 77.7;//a
+        _position.rad += (delta_r_distance - delta_l_distance) / WIDTH;//a  77.7
 
 //        const double_t true_y = pow(delta_r_distance - delta_l_distance, 2.0);
 //        const double_t true_x = (77.7 * 77.7) - true_y;
