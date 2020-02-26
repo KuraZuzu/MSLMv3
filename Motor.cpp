@@ -150,8 +150,8 @@ void MotorManager::loop() {
 
         //タイヤのスペックは、直径28.0mm、モーターが1セットのパルス(2pulse)で0.9度回転
 
-        delta_l_distance = (delta_l_pulse) * 28.0 * PI / 400 / 2;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
-        delta_r_distance = (delta_r_pulse) * 28.0 * PI / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
+        delta_l_distance = (delta_l_pulse) * 30.0 * PI / 400 / 2;   //　"/ 400"は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"  (0.9 or 1.8  ?)
+        delta_r_distance = (delta_r_pulse) * 30.0 * PI / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
 
         v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
 
@@ -162,7 +162,7 @@ void MotorManager::loop() {
 //        _position.rad += atan2(true_y, true_x); //WIDTH 77.7  //最初の引数は (角速度)ω * (サンプリングレート)Δt をかけた結果と同様であり、オドメトリのための角度計算で用いる
 
 
-        _position.x += v * cos(PI/2 + _position.rad) / 100 ; // * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
+        _position.x += v * cos(PI/2 + _position.rad) / 100; // * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
         _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸  *(630/631)は、誤差のフィルターとして実装
 
 

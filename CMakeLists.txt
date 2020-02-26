@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(MSLMv3)
 
-set(MSLM_SOURCE
+set(MSLMv3_SOURCE
         Motor.h
         Motor.cpp
         sensor.h
@@ -20,18 +20,18 @@ set(MSLM_SOURCE
         SensorManager.h
         SensorManager.cpp)
 
-set(MSLM_SIM_SOURCE
+set(MSLMv3_SIM_SOURCE
         block.cpp
         map3.cpp
-        Simulator.cpp
-        sim_main.cpp
+#        Simulator.cpp
+#        sim_main.cpp
         map_mbed.cpp
         )
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_library(MSLM ${MSLM_SOURCE})
+add_library(MSLMv3 ${MSLMv3_SOURCE})
 
-target_link_libraries(MSLM ${MBED_LIBS})
+target_link_libraries(MSLMv3 ${MBED_LIBS})
 
-add_executable(SIM ${MSLM_SIM_SOURCE})
+add_executable(SIM ${MSLMv3_SIM_SOURCE})
