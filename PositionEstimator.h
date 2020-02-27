@@ -14,56 +14,24 @@
 class PositionEstimator {
 private:
     Position& _odometry;
-    Position _world_position;
+    Position _world_position; //学習をさせたモデルのワールド座標(未実装)
     SensorManager& _sensor;
 
 public:
 
     PositionEstimator(Position& odometry, SensorManager& sensor);
-    Position get_position(){ return _odometry;}
-    MapPosition get_map_position(); //マップ上の何ブロックにいるか
-    void update_map(Map3& _map){
-        MapPosition pos = get_map_position();
-        Block b;
-        uint8_t wall = 0;
-        switch (pos.direction){
-            case NORTH_MASK:
-                wall |= (!_sensor.is_opened_left_wall())? WEST_MASK:0;
-                wall |= (!_sensor.is_opened_front_wall())? NORTH_MASK:0;
-                wall |= (!_sensor.is_opened_right_wall())? EAST_MASK:0;
-                break;
 
-            case EAST_MASK:
-                wall |= (!_sensor.is_opened_left_wall())? NORTH_MASK:0;
-                wall |= (!_sensor.is_opened_front_wall())? EAST_MASK:0;
-                wall |= (!_sensor.is_opened_right_wall())? SOUTH_MASK:0;
-                break;
-
-            case SOUTH_MASK:
-                wall |= (!_sensor.is_opened_left_wall())? EAST_MASK:0;
-                wall |= (!_sensor.is_opened_front_wall())? SOUTH_MASK:0;
-                wall |= (!_sensor.is_opened_right_wall())? WEST_MASK:0;
-                break;
-
-            case WEST_MASK:
-                wall |= (!_sensor.is_opened_left_wall())? SOUTH_MASK:0;
-                wall |= (!_sensor.is_opened_front_wall())? WEST_MASK:0;
-                wall |= (!_sensor.is_opened_right_wall())? NORTH_MASK:0;
-                break;
-        }
-
-        b.set_wall(wall);
-        _map.set_block(b, pos);
-    }
-
+/* x,y,rad を連続の値としてdouble型でセットする */
     void set_position(double_t x, double_t y, double_t rad);
 
-    //新規追加
-    uint8_t get_wall(){
-        Block block;
-        return block.get_wall();
-    }
+/* x,y,rad を連続の値としてdouble型で取得する */
+    Position get_position();
 
+/* x,y,rad をブロック単位で取得する */
+    MapPosition get_map_position(); //マップ上のどこのブロックにいるか
+
+/* マップ情報をアップデート */
+    void update_map(Map3& _map);
 
 };
 

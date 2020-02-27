@@ -28,10 +28,9 @@ public:
         y = 0.0;
     }
 
-    Position(const Position& _p){
+    Position(const Position& _p): Point(), rad(_p.rad) {
         x = _p.x;
         y = _p.y;
-        rad = _p.rad;
     }
 
     double_t rad;

@@ -10,6 +10,10 @@ PositionEstimator::PositionEstimator(Position& odometry, SensorManager& sensor) 
 
 }
 
+Position PositionEstimator::get_position(){
+    return _odometry;
+}
+
 void PositionEstimator::set_position(double_t x, double_t y, double_t rad) {
     _odometry.x = x;
     _odometry.y = y;
@@ -55,4 +59,41 @@ MapPosition PositionEstimator::get_map_position() {
     }
 
     return v;
+}
+
+
+/* 各方向ごとに、壁があれば壁情報設置として更新 */
+void PositionEstimator::update_map(Map3& _map){
+    MapPosition pos = get_map_position();
+    Block b;
+    uint8_t wall = 0;
+    switch (pos.direction){  //機体の向いてる方向に対して分岐
+
+        case NORTH_MASK: // 北方向を向いてる時
+            wall |= (!_sensor.is_opened_left_wall())? WEST_MASK:0;
+            wall |= (!_sensor.is_opened_front_wall())? NORTH_MASK:0;
+            wall |= (!_sensor.is_opened_right_wall())? EAST_MASK:0;
+            break;
+
+        case EAST_MASK:  // 東方向を向いてる時
+            wall |= (!_sensor.is_opened_left_wall())? NORTH_MASK:0;
+            wall |= (!_sensor.is_opened_front_wall())? EAST_MASK:0;
+            wall |= (!_sensor.is_opened_right_wall())? SOUTH_MASK:0;
+            break;
+
+        case SOUTH_MASK: // 南方向を向いてる時
+            wall |= (!_sensor.is_opened_left_wall())? EAST_MASK:0;
+            wall |= (!_sensor.is_opened_front_wall())? SOUTH_MASK:0;
+            wall |= (!_sensor.is_opened_right_wall())? WEST_MASK:0;
+            break;
+
+        case WEST_MASK:  // 西方向を向いてる時
+            wall |= (!_sensor.is_opened_left_wall())? SOUTH_MASK:0;
+            wall |= (!_sensor.is_opened_front_wall())? WEST_MASK:0;
+            wall |= (!_sensor.is_opened_right_wall())? NORTH_MASK:0;
+            break;
+    }
+
+    b.set_wall(wall); //壁情報をセットする
+    _map.set_block(b, pos);
 }
