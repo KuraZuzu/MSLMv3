@@ -11,12 +11,12 @@
 #include "vector.h"
 #include "../defines.h"
 
-#define MEAN_SIZE 20
+#define MEAN_SIZE 20 //平均値を取るための、センサ距離取得回数
 
 class SensorManager {
 
     DistanceSensor left_sensor, front_sensor, right_sensor;
-//    Vector<int32_t> ls,rs,fs;
+
 
 public:
 
@@ -24,10 +24,12 @@ public:
 
     };
 
+
+/* 左センサが閾値を超えているかで、壁の設置の有無を返す */
     inline bool is_opened_left_wall() {
         int32_t  mean=0;
+        //センサのノイズを打ち消すため、複数回の距離センサを作動させ、その平均値を取る
         for (int i = 0; i < MEAN_SIZE; ++i) {
-//            ls.push_back(left_sensor);
             mean += left_sensor;
         }
         mean = mean / MEAN_SIZE;
@@ -35,8 +37,11 @@ public:
         return mean >= WALL_TH;
     }
 
+
+/* 左センサが閾値を超えているかで、壁の設置の有無を返す */
     inline bool is_opened_front_wall() {
         int32_t mean =0;
+        //センサのノイズを打ち消すため、複数回の距離センサを作動させ、その平均値を取る
         for (int i = 0; i < MEAN_SIZE; ++i) {
             mean += front_sensor;
         }
@@ -45,8 +50,11 @@ public:
         return mean >= WALL_TH;
     }
 
+
+/* 左センサが閾値を超えているかで、壁の設置の有無を返す */
     inline bool is_opened_right_wall() {
         int32_t mean = 0;
+        //センサのノイズを打ち消すため、複数回の距離センサを作動させ、その平均値を取る
         for (int i = 0; i < MEAN_SIZE; ++i) {
             mean += right_sensor;
 
@@ -56,18 +64,23 @@ public:
         return mean >= WALL_TH;
     }
 
+
+/* 中央センサの壁検知距離を返す */
     inline int get_front_wall_distance() {
         return front_sensor;
     }
 
+
+/* 左センサの壁検知距離を返す */
     inline int get_left_wall_distance() {
         return left_sensor;
     }
 
+
+/* 右センサの壁検知距離を返す */
     inline int get_right_wall_distance() {
         return right_sensor;
     }
-
 
 };
 

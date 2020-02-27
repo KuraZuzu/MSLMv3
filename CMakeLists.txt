@@ -8,25 +8,23 @@ set(MSLMv3_SOURCE
         deftype.h
         sensor.cpp
         switch.h
-        vector.cpp
         block.h
         block.cpp
         map3.h
         map3.cpp
-        Point.cpp
         Point.h
         PositionEstimator.h
         PositionEstimator.cpp
         SensorManager.h
-        SensorManager.cpp)
-
-set(MSLMv3_SIM_SOURCE
-        block.cpp
-        map3.cpp
-#        Simulator.cpp
-#        sim_main.cpp
-        map_mbed.cpp
         )
+
+#set(MSLMv3_SIM_SOURCE
+##        block.cpp
+##        map3.cpp
+##        Simulator.cpp
+##        sim_main.cpp
+##        map_mbed.cpp
+#        )
 
 set(CMAKE_CXX_STANDARD 11)
 

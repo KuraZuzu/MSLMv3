@@ -41,25 +41,5 @@ void Map_Mbed::write_map() {
         outputfile << std::endl;
     }
     outputfile.close();
-    /*int i, j;
-    uint8_t a = 0;
-    FILE *fp;
-    LocalFileSystem *local;
-    local = new LocalFileSystem("local");
-
-    fp = fopen("/local/TEST.TXT" ,"w");
-
-    for(i = 0; i < _x_size; i++){
-        for(j = 0; j < _y_size; j++){
-            a = _block[i][j].get_wall();
-            fprintf(fp, "%d ",(int)_point.x);
-            fprintf(fp, "%d ",(int)_point.y);
-            fprintf(fp, "%d ", (int)a);
-        }
-    }
-    fclose(fp);
-
-    delete local;
-     */
 
 }

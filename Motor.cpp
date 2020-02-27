@@ -73,7 +73,7 @@ MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
 /* 左モータ の速度を指定 */
 void MotorManager::set_left_speed(double_t l_speed) {
 
-    l_flag = static_cast<bool>(l_speed);
+    l_flag = static_cast<bool>(l_speed); //速度が"0"であると、"false"となる
     if(l_speed < 0.0){        //速度指定が負の値だとモータ逆転
         l_speed = -l_speed;
         _left_motor.set_wise(false); //逆転
@@ -110,6 +110,10 @@ double_t MotorManager::right_distance() {
 
 
 
+/* 左右のモータで独立した割り込みを使用すると、タイマ のカウントにズレが発生する
+   理由としては、ARM社の提供するフレームワーク "mbed"には抽象化のために、使えるタイマ は１つのみであるからだ。
+   １つのタイマ を作動させておき、左右のモータ の速度差から、クロック(回転)をかける回数を区別する。
+   １つのタイマ のみの使用となるので、ズレは発生しなくなるアルゴリズムとなる。                              */
 void MotorManager::loop() {
 
     if ((_l_speed <= l_t) && l_flag) {
@@ -163,7 +167,7 @@ void MotorManager::loop() {
         v_count = 0;  //速度のリセットをすることで、再計算
     }
 
-    v_count++;
+    v_count++; //一定感間隔で進んだ距離を測っているので、インクリメントで速度カウントができる
 }
 
 char MotorManager::get_current_machine_direction() {

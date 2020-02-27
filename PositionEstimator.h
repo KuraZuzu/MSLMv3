@@ -5,7 +5,7 @@
 #ifndef NEWZUZUMOUSE_POSITIONESTIMATER_H
 #define NEWZUZUMOUSE_POSITIONESTIMATER_H
 
-//#include "Motor.h"
+#include "Motor.h"
 #include "Point.h"
 #include "SensorManager.h"
 #include "map3.h"
