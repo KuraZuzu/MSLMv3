@@ -34,4 +34,4 @@ add_library(MSLMv3 ${MSLMv3_SOURCE})
 
 target_link_libraries(MSLMv3 ${MBED_LIBS})
 
-add_executable(SIM ${MSLMv3_SIM_SOURCE})
+#add_executable(SIM ${MSLMv3_SIM_SOURCE})
