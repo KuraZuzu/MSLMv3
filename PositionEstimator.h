@@ -1,5 +1,5 @@
 //
-// Created by 倉澤　一詩 on 2018/11/24.
+// Created by 倉澤　一詩
 //
 
 #ifndef NEWZUZUMOUSE_POSITIONESTIMATER_H

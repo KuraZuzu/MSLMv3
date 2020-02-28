@@ -1,3 +1,8 @@
+//
+// Created by 倉澤　一詩
+//
+
+
 #ifndef DEF_TYPE_H
 #define DEF_TYPE_H
 

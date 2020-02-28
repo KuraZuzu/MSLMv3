@@ -1,8 +1,6 @@
 //
-// Created by 倉澤　一詩 on 2018/09/22.
+// Created by 倉澤　一詩
 //
-//#ifndef BLINKLED_MOTOR_H
-//#define BLINKLED_MOTOR_H
 
 #ifndef NEWZUZUMOUSE_MOTOR_H
 #define NEWZUZUMOUSE_MOTOR_H

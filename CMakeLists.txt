@@ -19,11 +19,11 @@ set(MSLMv3_SOURCE
         )
 
 #set(MSLMv3_SIM_SOURCE
-##        block.cpp
-##        map3.cpp
-##        Simulator.cpp
-##        sim_main.cpp
-##        map_mbed.cpp
+#        block.cpp
+#        map3.cpp
+#        Simulator.cpp
+#        sim_main.cpp
+#        map_mbed.cpp
 #        )
 
 set(CMAKE_CXX_STANDARD 11)

@@ -1,3 +1,8 @@
+//
+// Created by dozou and Aarato
+//
+
+
 #ifndef SENSOR_H
 #define SENSOR_H
 #include "deftype.h"

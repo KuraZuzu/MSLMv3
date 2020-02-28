@@ -1,3 +1,7 @@
+//
+// Created by dozou and Aarato
+//
+
 #include "sensor.h"
 
 DistanceSensor::DistanceSensor( PinName analog_value ):_analog_value(analog_value){

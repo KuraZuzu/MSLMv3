@@ -25,8 +25,6 @@ MapPosition PositionEstimator::get_map_position() {
     v.x = _odometry.x / 180.0;
     v.y = _odometry.y / 180.0;
 
-//    int32_t k;
-
     const double_t  current_x = sin(_odometry.rad);
     const double_t  current_y = cos(_odometry.rad);
 
@@ -35,25 +33,18 @@ MapPosition PositionEstimator::get_map_position() {
 
     if ((0. < r_x) && (0. < r_y)) {
 
-//        v.direction = NORTH_MASK;
         v.direction = WEST_MASK;
-
 
     } else if ((0. < r_x) && (r_y < 0.)) {
 
-//        v.direction = WEST_MASK;
         v.direction = SOUTH_MASK;
-
 
     } else if ((r_x < 0.) && (r_y < 0.)) {
 
-//        v.direction = SOUTH_MASK;
         v.direction = EAST_MASK;
-
 
     } else {
 
-//        v.direction = EAST_MASK;
         v.direction = NORTH_MASK;
 
     }

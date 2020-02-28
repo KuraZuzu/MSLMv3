@@ -1,5 +1,5 @@
 //
-// Created by 倉澤　一詩 on 2018/11/11.
+// Created by 倉澤　一詩
 //
 
 #include "block.h"

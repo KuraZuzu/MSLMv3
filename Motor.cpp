@@ -1,6 +1,7 @@
 //
-// Created by 倉澤　一詩 on 2018/09/22.
+// Created by 倉澤　一詩
 //
+
 #include "Motor.h"
 #include "deftype.h"
 #include "../defines.h"
