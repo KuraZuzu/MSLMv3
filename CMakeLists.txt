@@ -13,8 +13,8 @@ set(MSLMv3_SOURCE
         map3.h
         map3.cpp
         Point.h
-        PositionEstimator.h
-        PositionEstimator.cpp
+        position_estimator.h
+        position_estimator.cpp
         SensorManager.h
         )
 

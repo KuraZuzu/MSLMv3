@@ -2,10 +2,10 @@
 // Created by 倉澤　一詩 on 2018/11/24.
 //
 
-#include "PositionEstimator.h"
+#include "position_estimator.h"
 #include "deftype.h"
 
-PositionEstimator::PositionEstimator(Position& odometry, SensorManager& sensor) :_odometry(odometry), _sensor(sensor){
+PositionEstimator::PositionEstimator(Position& odometry, SensorManager& sensor) : _odometry(odometry), _sensor(sensor){
 
 
 }
