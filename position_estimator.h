@@ -7,7 +7,7 @@
 
 #include "Motor.h"
 #include "Point.h"
-#include "SensorManager.h"
+#include "Sensor_manager.h"
 #include "map3.h"
 #include "block.h"
 

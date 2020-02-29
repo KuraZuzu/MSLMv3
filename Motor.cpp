@@ -67,7 +67,7 @@ MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
     RefOut.write(static_cast<float>(0.08 / 3.3)); // "0 ~ 1.0"での電流量指定。
                                                         //電源が "3.3v" なので、0.08Aを指定する式として "0.08/3.3"
     l_flag = false; // 左モータ のフラグを初期では"fasle"
-    r_flag = false; // 右モータ   "
+    r_flag = false; // 右モータ のフラグを初期では"fasle"
 }
 
 
@@ -142,33 +142,33 @@ void MotorManager::loop() {
         r_t++;
     }
 
+    /* ここで、速度・走行距離の計測と自己位置推定を行う。
+       タイマを"25μs"に設定してあるので、400回目のカウントで"0.01s"のサンプリングレートとなる */
+    if (v_count == 400) {  // 25us * 400 = 10000μs (0.01s)
 
-    if (v_count == 400) {  // 25us * 400 = 10000us のサンプリングレートとなる (0.01s となる)
+        delta_l_pulse = l_pulse - old_l_pulse; /*　モータへの回転指令数の差分を計測 */
+        delta_r_pulse = r_pulse - old_r_pulse; /*　                            */
 
-        delta_l_pulse = l_pulse - old_l_pulse;
-        delta_r_pulse = r_pulse - old_r_pulse;
-
-
-        old_l_pulse = l_pulse;
-        old_r_pulse = r_pulse;
+        old_l_pulse = l_pulse; /* 次回の計測のために、値を更新 */
+        old_r_pulse = r_pulse; /*                         */
 
         // タイヤのスペックは、直径28.0mm、モーターが1セットのパルス(2pulse)で0.9度回転
-        delta_l_distance = (delta_l_pulse) * 30.0 * PI / 400 / 2;   //　"/ 400" は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2"
-        delta_r_distance = (delta_r_pulse) * 30.0 * PI / 400 / 2;   //　10ms = 0.01sごとの変化した距離(mm)がわかる.
+        delta_l_distance = (delta_l_pulse) * 30.0 * PI / 400 / 2;   /*　"/ 400" は,(360/0.9)であり、モーター2パルスの1回転に対する割合が "/ 2" */
+        delta_r_distance = (delta_r_pulse) * 30.0 * PI / 400 / 2;   /*　10ms = 0.01sごとの変化した距離(mm)がわかる.                         */
 
-        v = ( delta_l_distance + delta_r_distance ) * 100 / 2;
+        v = ( delta_l_distance + delta_r_distance ) * 100 / 2;  //速度計測ｗ行う
 
         _position.rad += (delta_r_distance - delta_l_distance) / WIDTH;//　車幅と左右のモータ差分から、機体の角度(曲座標系)で計算
         //オドメトリの計算として用いる
 
         _position.x += v * cos(PI/2 + _position.rad) / 100; // * 1.07;  //x軸  *(90/96)は、誤差のフィルターとして実装
-        _position.y += v * sin(PI/2 + _position.rad) / 100;  //y軸  *(630/631)は、誤差の簡易的なフィルター(オペレータ)として実装
+        _position.y += v * sin(PI/2 + _position.rad) / 100; //y軸  *(630/631)は、誤差の簡易的なフィルター(オペレータ)として実装
 
         odometry_watch_count++; //オドメトリのデバッグ用のカウント
-        v_count = 0;  //速度のリセットをすることで、再計算
+        v_count = 0;            // タイマのカウント回数をリセット
     }
 
-    v_count++; //一定感間隔で進んだ距離を測っているので、インクリメントで速度カウントができる
+    v_count++; // 25μsごとにタイマが回るので、25μsごとにインクリメントされる
 }
 
 char MotorManager::get_current_machine_direction() {

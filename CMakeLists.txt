@@ -15,7 +15,7 @@ set(MSLMv3_SOURCE
         point.h
         position_estimator.h
         position_estimator.cpp
-        sensorManager.h
+        sensor_manager.h
         )
 
 #set(MSLMv3_SIM_SOURCE
