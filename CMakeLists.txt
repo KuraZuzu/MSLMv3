@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(MSLMv3)
 
 set(MSLMv3_SOURCE
-        Motor.h
-        Motor.cpp
+        motor.h
+        motor.cpp
         sensor.h
         deftype.h
         sensor.cpp
@@ -12,10 +12,10 @@ set(MSLMv3_SOURCE
         block.cpp
         map3.h
         map3.cpp
-        Point.h
+        point.h
         position_estimator.h
         position_estimator.cpp
-        SensorManager.h
+        sensorManager.h
         )
 
 #set(MSLMv3_SIM_SOURCE
