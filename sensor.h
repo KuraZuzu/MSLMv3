@@ -13,8 +13,11 @@
 #include "mbed.h"
 
 
-/* PSDセンサによって、物体までの距離を検知する
-   アナログ通信の通信方式で距離検知*/
+/**
+ * @brief
+ *   PSDセンサによって、物体までの距離を検知する  <br>
+ *   アナログ通信の通信方式で距離検知
+ */
 class DistanceSensor{
     private:
         AnalogIn _analog_value;
@@ -27,7 +30,9 @@ class DistanceSensor{
         }
 };
 
-/* I^2Cの通信方式で距離検知 */
+/**
+ * @fn I^2Cの通信方式で距離検知
+ */
 class gp2y_i2c{
     private:
         I2C i2c;

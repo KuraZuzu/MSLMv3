@@ -10,7 +10,6 @@
 #include "deftype.h"
 #include "../defines.h"
 
-/* コンストラクタ */
 StepMotor::StepMotor(PinName clock, PinName reset, PinName wise, bool default_wise, PinName m3):
 _clock(clock, false), _reset(reset, false), _wise(wise, default_wise), _m3(m3, true) {
 
@@ -25,7 +24,9 @@ void StepMotor::step(){
 }
 
 
-/* 回転方向が正転ならパルスカウントを増加、逆転なら減らす */
+/**
+ * @fn 回転方向が正転ならパルスカウントを増加、逆転なら減らす
+ */
 void StepMotor::pulse_counter(){
     if(_forward_wise == _wise.read())
         _pulse_count++;
@@ -34,13 +35,17 @@ void StepMotor::pulse_counter(){
 }
 
 
-/* 現在のパルス数を返す */
+/**
+ * @fn 現在のパルス数を返す
+ */
 int64_t StepMotor::pulse_counts(){
     return _pulse_count;
 }
 
 
-/* mbedフレームワーク では write() で代入 */
+/**
+ * @fnmbedフレームワーク では write() で代入
+ */
 void StepMotor::set_m3(bool m3) {
     _m3.write(m3);
 }
@@ -62,7 +67,9 @@ void StepMotor::reset_count() {
 }
 
 
-/* 左右のモータ で必要なピンを代入、"RefOut"では、電流量制御 */
+/**
+ * @fn 左右のモータ で必要なピンを代入、"RefOut"では、電流量制御
+ */
 MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
         _left_motor(left), _right_motor(right), RefOut(refout){
 
@@ -75,7 +82,9 @@ MotorManager::MotorManager(StepMotor left, StepMotor right, PinName refout) :
 }
 
 
-/* 左モータ の速度を指定 */
+/**
+ * @fn 左モータ の速度を指定
+ */
 void MotorManager::set_left_speed(double_t l_speed) {
 
     l_flag = static_cast<bool>(l_speed); //速度が"0"であると、"false"となる
@@ -91,7 +100,9 @@ void MotorManager::set_left_speed(double_t l_speed) {
 }
 
 
-/* 右モータ と同様 */
+/**
+ * @fn 右モータ と同様
+ */
 void MotorManager::set_right_speed(double_t r_speed) {
 
     r_flag = static_cast<bool>(r_speed);
@@ -115,10 +126,13 @@ double_t MotorManager::right_distance() {
 
 
 
-/* 左右のモータで独立した割り込みを使用すると、タイマ のカウントにズレが発生する
-   理由としては、ARM社の提供するフレームワーク "mbed"には抽象化のために、使えるタイマ は１つのみであるからだ。
-   １つのタイマ を作動させておき、左右のモータ の速度差から、クロック(回転)をかける回数を区別する。
-   １つのタイマ のみの使用となるので、ズレは発生しなくなるアルゴリズムとなる。                              */
+/**
+ * @fn
+ *   左右のモータで独立した割り込みを使用すると、タイマ のカウントにズレが発生する
+ *   理由としては、ARM社の提供するフレームワーク "mbed"には抽象化のために、使えるタイマ は１つのみであるからだ。
+ *   １つのタイマ を作動させておき、左右のモータ の速度差から、クロック(回転)をかける回数を区別する。
+ *   １つのタイマ のみの使用となるので、ズレは発生しなくなるアルゴリズムとなる。
+ */
 void MotorManager::loop() {
 
     if ((_l_speed <= l_t) && l_flag) {

@@ -7,7 +7,6 @@
 * see https://opensource.org/licenses/MIT
 */
 
-
 #include "map3.h"
 
 Map3::Map3(uint8_t x_size, uint8_t y_size) {

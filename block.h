@@ -25,16 +25,24 @@ public:
 
     int walk_cnt; //歩数情報
 
-/* 壁情報をセットする */
+    /**
+     * @fn 壁情報をセットする
+     */
     void set_wall(uint8_t b);
 
-/* 壁情報をリセットする */
+    /**
+     * @fn 壁情報をリセットする
+     */
     void reset_wall();
 
-/* センサを参照せずに、マップ情報を元に壁の有無を返す */
+    /**
+     * @fn センサを参照せずに、マップ情報を元に壁の有無を返す
+     */
     bool is_opened_wall(uint8_t t);
 
-/* 壁情報を取得する */
+    /**
+     * @fn 壁情報を取得する
+     */
     uint8_t get_wall();
 
     void set_searched();

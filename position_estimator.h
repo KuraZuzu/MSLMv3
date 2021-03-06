@@ -26,16 +26,24 @@ public:
 
     PositionEstimator(Position& odometry, SensorManager& sensor);
 
-/* x,y,rad を連続の値としてdouble型でセットする */
+    /**
+     * @fn x,y,rad を連続の値としてdouble型でセットする
+     */
     void set_position(double_t x, double_t y, double_t rad);
 
-/* x,y,rad を連続の値としてdouble型で取得する */
+    /**
+     * @fn x,y,rad を連続の値としてdouble型で取得する
+     */
     Position get_position();
 
-/* x,y,rad をブロック単位で取得する */
+    /**
+     * @fnx,y,rad をブロック単位で取得する
+     */
     MapPosition get_map_position(); //マップ上のどこのブロックにいるか
 
-/* マップ情報をアップデート */
+    /**
+     * @fn マップ情報をアップデート
+     */
     void update_map(Map3& _map);
 
 };
