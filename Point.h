@@ -1,6 +1,11 @@
-//
-// Created by 倉澤　一詩
-//
+/*!
+* @file Point.h v1.0
+* @Copyright © 2018 Kazushi Kurasawa
+* @date 2018.11.16
+*
+* Released under the MIT license.
+* see https://opensource.org/licenses/MIT
+*/
 
 #ifndef NEWZUZUMOUSE_POINT_H
 #define NEWZUZUMOUSE_POINT_H

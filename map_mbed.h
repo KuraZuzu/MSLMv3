@@ -1,6 +1,11 @@
-//
-// Created by 山西
-//
+/*!
+* @file map_mbed.h v1.0
+* @Copyright © 2018 Aoi Yamanishi
+* @date 2018.11.16
+*
+* Released under the MIT license.
+* see https://opensource.org/licenses/MIT
+*/
 
 #ifndef MSLMV3_MAP_MBED_H
 #define MSLMV3_MAP_MBED_H

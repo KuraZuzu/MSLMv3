@@ -1,7 +1,11 @@
-//
-// Created by dozou and Aarato
-//
-
+/*!
+* @file sensor.h v1.0
+* @Copyright © 2018 Nobuhiro Funato and Shogo Arato
+* @date 2018.11.16
+*
+* Released under the MIT license.
+* see https://opensource.org/licenses/MIT
+*/
 
 #ifndef SENSOR_H
 #define SENSOR_H

@@ -1,6 +1,11 @@
-//
-// Created by 山西
-//
+/*!
+* @file sim_main.cpp v1.0
+* @Copyright © 2018 Aoi Yamanishi
+* @date 2018.11.16
+*
+* Released under the MIT license.
+* see https://opensource.org/licenses/MIT
+*/
 
 #include <iostream>
 #include "map3.h"

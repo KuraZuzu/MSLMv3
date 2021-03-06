@@ -1,7 +1,11 @@
-//
-// Created by 倉澤　一詩
-//
-
+/*!
+* @file Motor.cpp v1.0
+* @Copyright © 2018 Kazushi Kurasawa
+* @date 2018.11.16
+*
+* Released under the MIT license.
+* see https://opensource.org/licenses/MIT
+*/
 #include "Motor.h"
 #include "deftype.h"
 #include "../defines.h"
