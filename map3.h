@@ -11,7 +11,7 @@
 
 #include "block.h"
 #include "deftype.h"
-#include "Point.h"
+#include "point.h"
 
 class Map3 {
 public:

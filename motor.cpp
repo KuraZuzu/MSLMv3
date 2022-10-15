@@ -6,7 +6,7 @@
 * Released under the MIT license.
 * see https://opensource.org/licenses/MIT
 */
-#include "Motor.h"
+#include "motor.h"
 #include "deftype.h"
 #include "../defines.h"
 

@@ -12,7 +12,7 @@
 
 #include "deftype.h"
 #include "vector.h"
-#include "Point.h"
+#include "point.h"
 #include "mbed.h"
 
 class StepMotor{
